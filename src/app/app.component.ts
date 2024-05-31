@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import {
 	BaseService,
 	CheckboxModel,
@@ -14,7 +15,6 @@ import {
 	TABLE_USER_CONST,
 } from './app-config.const';
 import { IconsList } from '../assets/svg/IconsList';
-import { Subscription } from 'rxjs';
 import { ResourceModel } from './shared/model';
 import { ResourceReqModel } from './shared/model/resouce-req.model';
 
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	private updateResourceService(): void {
-		const bodyReq = new ResourceReqModel('Update Test', 15, 'green');
+		const bodyReq = new ResourceReqModel('Test 20', 20, 'Orange');
 
 		const subs = this.baseService
 			.putData(
@@ -74,7 +74,6 @@ export class AppComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(() => {
 				// Write code here
-				this.getResourceListService();
 			});
 
 		this.subscribers.push(subs);
@@ -100,8 +99,6 @@ export class AppComponent implements OnInit, OnDestroy {
 	onSave(): void {
 		this.isSubmit = true;
 		setTimeout(() => {
-			this.updateResourceService();
-			// this.deleteResourceService();
 			this.isSubmit = false;
 		}, 2000);
 	}

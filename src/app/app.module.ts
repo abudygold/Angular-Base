@@ -6,6 +6,8 @@ import { AdlLibModule } from '@adl/angular-ui';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -13,6 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 		BrowserModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
+		FormsModule,
+		ReactiveFormsModule,
+		MatInputModule,
 		MatDialogModule,
 		AdlLibModule,
 	],
