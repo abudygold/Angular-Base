@@ -60,3 +60,7 @@ export const TABLE_USER_CONST = TableConfig;
 export const SAMPLE_FORM_CONST = SampleForm;
 export const RESOURCE_PATH_CONST =
 	'https://crudcrud.com/api/b5bee03bb615487a8c54290a5eaf09cf';
+export enum ACTIVE_ENUM {
+	'Active' = 0,
+	'Deactivate' = 1,
+}

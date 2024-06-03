@@ -1,10 +1,13 @@
 import {
+	BaseOptionModel,
 	BaseService,
 	CheckboxModel,
 	ConfirmationComponent,
 	IConfirmation,
 	IconService,
 	TableModel,
+	generateEnumOption,
+	generateHttpParams,
 } from '@adl/angular-ui';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -14,6 +17,7 @@ import { Subscription } from 'rxjs';
 
 import { IconsList } from '../assets/svg/IconsList';
 import {
+	ACTIVE_ENUM,
 	RESOURCE_PATH_CONST,
 	SAMPLE_FORM_CONST,
 	TABLE_USER_CONST,
@@ -32,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	public isSubmit: boolean = false;
 	public formControl: FormControl = new FormControl();
 	public value: string = '';
+	public activeOption: BaseOptionModel[] = [];
 
 	private subscribers: Subscription[] = [];
 
@@ -44,6 +49,15 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
+		this.activeOption = generateEnumOption(ACTIVE_ENUM);
+
+		console.log(
+			generateHttpParams({
+				firstName: 'john',
+				lastName: 'doe',
+			}).toString()
+		);
+
 		this.getUnicornListService();
 	}
 
