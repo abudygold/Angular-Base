@@ -147,7 +147,13 @@
 		}"
 		(searchValue)="onSearch($event)"></adl-ui-search>
 
-	<adl-ui-table *ngIf="table" [table]="table"></adl-ui-table>
+	<ng-container *ngIf="!isLoading; else loadingTemplate">
+		<adl-ui-table
+			[table]="table"
+			(pagination)="onUpdatePage($event)"></adl-ui-table>
+	</ng-container>
+
+	<ng-template #loadingTemplate> Please wait... </ng-template>
 </div>
 
 <div class="container my-4">

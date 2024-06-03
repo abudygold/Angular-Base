@@ -3,7 +3,8 @@ import { Validators } from '@angular/forms';
 
 /* Table  */
 const TableConfig = new TableModel();
-TableConfig.labels = ['ID', 'Name', 'Age', 'Colour'];
+TableConfig.isPagination = true;
+TableConfig.labels = ['ID', 'Name', 'Email', 'Body'];
 TableConfig.columns = [
 	{
 		column: 'id',
@@ -14,11 +15,11 @@ TableConfig.columns = [
 		type: 'string',
 	},
 	{
-		column: 'age',
-		type: 'number',
+		column: 'email',
+		type: 'string',
 	},
 	{
-		column: 'colour',
+		column: 'body',
 		type: 'string',
 	},
 ];
@@ -58,8 +59,8 @@ const SampleForm = {
 
 export const TABLE_USER_CONST = TableConfig;
 export const SAMPLE_FORM_CONST = SampleForm;
-export const RESOURCE_PATH_CONST =
-	'https://crudcrud.com/api/b5bee03bb615487a8c54290a5eaf09cf';
+export const UNICORN_PATH_CONST =
+	'https://jsonplaceholder.typicode.com/comments';
 export enum ACTIVE_ENUM {
 	'Active' = 0,
 	'Deactivate' = 1,

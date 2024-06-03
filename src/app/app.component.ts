@@ -1,5 +1,6 @@
 import {
 	BaseOptionModel,
+	BaseParamReqModel,
 	BaseService,
 	CheckboxModel,
 	ConfirmationComponent,
@@ -12,18 +13,18 @@ import {
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 
 import { Subscription } from 'rxjs';
 
 import { IconsList } from '../assets/svg/IconsList';
 import {
 	ACTIVE_ENUM,
-	RESOURCE_PATH_CONST,
+	UNICORN_PATH_CONST,
 	SAMPLE_FORM_CONST,
 	TABLE_USER_CONST,
 } from './app-config.const';
-import { ResourceModel } from './shared/model';
-import { ResourceReqModel } from './shared/model/resouce-req.model';
+import { CommentModel, CommentReqModel } from './shared/model';
 
 @Component({
 	selector: 'app-root',
@@ -37,7 +38,9 @@ export class AppComponent implements OnInit, OnDestroy {
 	public formControl: FormControl = new FormControl();
 	public value: string = '';
 	public activeOption: BaseOptionModel[] = [];
+	public isLoading: boolean = false;
 
+	private unicornParam!: BaseParamReqModel;
 	private subscribers: Subscription[] = [];
 
 	constructor(
@@ -50,6 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.activeOption = generateEnumOption(ACTIVE_ENUM);
+		this.unicornParam = new BaseParamReqModel();
 
 		console.log(
 			generateHttpParams({
@@ -62,20 +66,35 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	private getUnicornListService(): void {
+		this.isLoading = true;
+
 		const subs = this.baseService
-			.getPagingData(RESOURCE_PATH_CONST + '/unicorns', ResourceModel)
-			.subscribe((resp) => {
-				this.table.dataSource = resp?.data ?? null;
+			.getPagingData(UNICORN_PATH_CONST, CommentModel, this.unicornParam)
+			.subscribe({
+				next: (resp) => {
+					const start =
+						this.table.pageSize * this.table.page - this.table.pageSize;
+					const end = this.table.pageSize * this.table.page;
+
+					this.table.dataSource = resp?.data?.slice(start, end) ?? null;
+					this.table.totalData = resp?.data?.length;
+					this.isLoading = false;
+				},
+				error: () => (this.isLoading = false),
 			});
 
 		this.subscribers.push(subs);
 	}
 
 	private createUnicornService(): void {
-		const bodyReq = new ResourceReqModel('Test', 10, 'blue');
+		const bodyReq = new CommentReqModel(
+			'John Doe',
+			'john-doe@example.com',
+			'lorem ipsum'
+		);
 
 		const subs = this.baseService
-			.postData(RESOURCE_PATH_CONST + '/unicorns', bodyReq)
+			.postData(UNICORN_PATH_CONST, bodyReq)
 			.subscribe(() => {
 				// Write code here
 			});
@@ -84,13 +103,14 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	private updateUnicornService(): void {
-		const bodyReq = new ResourceReqModel('Test 20', 20, 'Orange');
+		const bodyReq = new CommentReqModel(
+			'John Doe',
+			'john-doe@example.com',
+			'lorem ipsum'
+		);
 
 		const subs = this.baseService
-			.putData(
-				RESOURCE_PATH_CONST + '/unicorns/6659974519f3e403e81e18a6',
-				bodyReq
-			)
+			.putData(UNICORN_PATH_CONST + '/:id', bodyReq)
 			.subscribe(() => {
 				// Write code here
 			});
@@ -100,10 +120,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	private deleteUnicornService(): void {
 		const subs = this.baseService
-			.deleteData(
-				RESOURCE_PATH_CONST + '/unicorns/6659974519f3e403e81e18a6',
-				null
-			)
+			.deleteData(UNICORN_PATH_CONST + '/:id', null)
 			.subscribe(() => {
 				// Write code here
 			});
@@ -126,7 +143,16 @@ export class AppComponent implements OnInit, OnDestroy {
 		console.log(e.filter((t: CheckboxModel) => t.checked));
 	}
 
-	public openDialog(): void {
+	onUpdatePage(page: PageEvent): void {
+		this.table.page =
+			this.table.pageSize === page?.pageSize ? page?.pageIndex + 1 : 1;
+		this.table.pageSize = page?.pageSize;
+		this.unicornParam.pageNo = this.table.page;
+		this.unicornParam.pageSize = this.table.pageSize;
+		this.getUnicornListService();
+	}
+
+	openDialog(): void {
 		const confirmation: IConfirmation = {
 			title: 'Test',
 			content:
