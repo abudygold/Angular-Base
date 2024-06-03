@@ -152,6 +152,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.getUnicornListService();
 	}
 
+	onActionClicked(e: { action: string; row: any }): void {
+		console.log(e);
+	}
+
 	openDialog(): void {
 		const confirmation: IConfirmation = {
 			title: 'Test',

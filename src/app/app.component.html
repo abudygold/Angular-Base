@@ -150,7 +150,8 @@
 	<ng-container *ngIf="!isLoading; else loadingTemplate">
 		<adl-ui-table
 			[table]="table"
-			(pagination)="onUpdatePage($event)"></adl-ui-table>
+			(pagination)="onUpdatePage($event)"
+			(actionClicked)="onActionClicked($event)"></adl-ui-table>
 	</ng-container>
 
 	<ng-template #loadingTemplate> Please wait... </ng-template>

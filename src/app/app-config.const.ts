@@ -4,7 +4,7 @@ import { Validators } from '@angular/forms';
 /* Table  */
 const TableConfig = new TableModel();
 TableConfig.isPagination = true;
-TableConfig.labels = ['ID', 'Name', 'Email', 'Body'];
+TableConfig.labels = ['ID', 'Name', 'Email', 'Body', 'Actions'];
 TableConfig.columns = [
 	{
 		column: 'id',
@@ -21,6 +21,27 @@ TableConfig.columns = [
 	{
 		column: 'body',
 		type: 'string',
+	},
+	{
+		column: 'actions',
+		type: 'actions',
+		actions: [
+			{
+				name: 'preview',
+				filePath: './assets/svg/preview.svg',
+				tooltips: 'Preview Icon',
+			},
+			{
+				name: 'edit',
+				filePath: './assets/svg/edit.svg',
+				tooltips: 'Edit Icon',
+			},
+			{
+				name: 'delete',
+				filePath: './assets/svg/delete.svg',
+				tooltips: 'Delete Icon',
+			},
+		],
 	},
 ];
 /* ./ Table  */
