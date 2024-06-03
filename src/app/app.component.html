@@ -1,24 +1,19 @@
 <div class="container mt-4">
 	<div class="mb-3">
-		<mat-form-field appearance="outline">
-			<input matInput placeholder="Only Number" appOnlyNumber />
-		</mat-form-field>
-	</div>
-	<div class="mb-3">
 		<adl-ui-input-text
 			[options]="{
 				label: 'Your Name',
 				appearance: 'outline',
 				matPrefix: {
-					icon: 'person'
+					icon: 'person',
 				},
 				field: {
 					value: '',
 					validation: {
 						validators: formValidator.firstName.validators,
-						message: formValidator.firstName.validationMessages
-					}
-				}
+						message: formValidator.firstName.validationMessages,
+					},
+				},
 			}"
 			[isSaveClicked]="isSubmit"
 			(getValue)="onSearch($event)"></adl-ui-input-text>
@@ -35,21 +30,21 @@
 					data: [
 						{
 							label: 'Men',
-							value: 'men'
+							value: 'men',
 						},
 						{
 							label: 'Women',
-							value: 'women'
-						}
-					]
+							value: 'women',
+						},
+					],
 				},
 				field: {
 					value: '',
 					validation: {
 						validators: formValidator.gender.validators,
-						message: formValidator.gender.validationMessages
-					}
-				}
+						message: formValidator.gender.validationMessages,
+					},
+				},
 			}"
 			[isSaveClicked]="isSubmit"
 			(getValue)="onSearch($event)"></adl-ui-select>
@@ -63,21 +58,21 @@
 					data: [
 						{
 							label: 'Men',
-							value: 'men'
+							value: 'men',
 						},
 						{
 							label: 'Women',
-							value: 'women'
-						}
-					]
+							value: 'women',
+						},
+					],
 				},
 				field: {
 					value: '',
 					validation: {
 						validators: formValidator.gender.validators,
-						message: formValidator.gender.validationMessages
-					}
-				}
+						message: formValidator.gender.validationMessages,
+					},
+				},
 			}"
 			[isSaveClicked]="isSubmit"
 			(getValue)="onSearch($event)"></adl-ui-radio>
@@ -91,27 +86,27 @@
 					data: [
 						{
 							label: 'Reading a book',
-							value: 'read_a_book'
+							value: 'read_a_book',
 						},
 						{
 							label: 'Playing Football',
-							value: 'football'
+							value: 'football',
 						},
 						{
 							label: 'Swimming',
 							value: 'swimming',
-							disabled: true
-						}
+							disabled: true,
+						},
 					],
-					isVertical: true
+					isVertical: true,
 				},
 				field: {
 					value: '',
 					validation: {
 						validators: formValidator.hobby.validators,
-						message: formValidator.hobby.validationMessages
-					}
-				}
+						message: formValidator.hobby.validationMessages,
+					},
+				},
 			}"
 			[isSaveClicked]="isSubmit"
 			(getValue)="onChecked($event)"></adl-ui-checkbox>
@@ -122,7 +117,7 @@
 			[options]="{
 				variant: 'basic',
 				color: 'primary',
-				name: 'Open Dialog'
+				name: 'Open Dialog',
 			}"
 			(click)="openDialog()"></adl-ui-button>
 	</div>
@@ -132,7 +127,7 @@
 			[options]="{
 				variant: 'flat',
 				color: 'primary',
-				name: 'Simpan'
+				name: 'Simpan',
 			}"
 			(click)="onSave()"></adl-ui-button>
 
@@ -140,7 +135,7 @@
 			[options]="{
 				variant: 'stroked',
 				color: 'primary',
-				name: 'Batal'
+				name: 'Batal',
 			}"></adl-ui-button>
 	</div>
 </div>
@@ -148,9 +143,52 @@
 <div class="container my-4">
 	<adl-ui-search
 		[options]="{
-			placeholder: 'Search'
+			placeholder: 'Search',
 		}"
 		(searchValue)="onSearch($event)"></adl-ui-search>
 
 	<adl-ui-table *ngIf="table" [table]="table"></adl-ui-table>
+</div>
+
+<div class="container my-4">
+	<h2>Pipe</h2>
+	<p class="mb-3">{{ 100000 | rupiah }}</p>
+
+	<h2>Directive</h2>
+	<div
+		class="mb-3"
+		style="display: flex; justify-content: space-between; gap: 1rem">
+		<mat-form-field appearance="outline" style="width: 100%">
+			<mat-label>Empty Space Directive (Form Control)</mat-label>
+			<input matInput [formControl]="formControl" appEmptySpace />
+		</mat-form-field>
+		<mat-form-field appearance="outline" style="width: 100%">
+			<mat-label>Empty Space Directive (ngModel)</mat-label>
+			<input matInput [(ngModel)]="value" appEmptySpace />
+		</mat-form-field>
+	</div>
+	<div
+		class="mb-3"
+		style="display: flex; justify-content: space-between; gap: 1rem">
+		<mat-form-field appearance="outline" style="width: 100%">
+			<mat-label>Only Number Directive (Form Control)</mat-label>
+			<input matInput [formControl]="formControl" appOnlyNumber />
+		</mat-form-field>
+		<mat-form-field appearance="outline" style="width: 100%">
+			<mat-label>Only Number Directive (ngModel)</mat-label>
+			<input matInput [(ngModel)]="value" appOnlyNumber />
+		</mat-form-field>
+	</div>
+	<div
+		class="mb-3"
+		style="display: flex; justify-content: space-between; gap: 1rem">
+		<mat-form-field appearance="outline" style="width: 100%">
+			<mat-label>Input Currency Directive (Form Control)</mat-label>
+			<input matInput [formControl]="formControl" appInputCurrency />
+		</mat-form-field>
+		<mat-form-field appearance="outline" style="width: 100%">
+			<mat-label>Input Currency Directive (ngModel)</mat-label>
+			<input matInput [(ngModel)]="value" appInputCurrency />
+		</mat-form-field>
+	</div>
 </div>

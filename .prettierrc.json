@@ -1,11 +1,22 @@
 {
+	"semi": true,
+	"trailingComma": "es5",
+	"singleQuote": true,
+	"printWidth": 80,
 	"tabWidth": 2,
 	"useTabs": true,
-	"singleQuote": true,
-	"semi": true,
-	"bracketSpacing": true,
 	"arrowParens": "always",
-	"trailingComma": "es5",
 	"bracketSameLine": true,
-	"printWidth": 80
+	"bracketSpacing": true,
+	"plugins": ["@trivago/prettier-plugin-sort-imports"],
+	"importOrder": [
+		"^@angular$",
+		"rxjs",
+		"^\\w",
+		"^(@shared|@core|@env|@test-utilities)(/.*|$)",
+		"^(business-logic|@ui)(/.*|$)",
+		"^[./|~/]"
+	],
+	"importOrderSeparation": true,
+	"importOrderParserPlugins": ["decorators-legacy", "typescript"]
 }

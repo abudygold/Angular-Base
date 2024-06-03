@@ -1,6 +1,3 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
 import {
 	BaseService,
 	CheckboxModel,
@@ -9,12 +6,18 @@ import {
 	IconService,
 	TableModel,
 } from '@adl/angular-ui';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+
+import { Subscription } from 'rxjs';
+
+import { IconsList } from '../assets/svg/IconsList';
 import {
 	RESOURCE_PATH_CONST,
 	SAMPLE_FORM_CONST,
 	TABLE_USER_CONST,
 } from './app-config.const';
-import { IconsList } from '../assets/svg/IconsList';
 import { ResourceModel } from './shared/model';
 import { ResourceReqModel } from './shared/model/resouce-req.model';
 
@@ -27,6 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
 	public table: TableModel = TABLE_USER_CONST;
 	public formValidator: any = SAMPLE_FORM_CONST;
 	public isSubmit: boolean = false;
+	public formControl: FormControl = new FormControl();
+	public value: string = '';
 
 	private subscribers: Subscription[] = [];
 
@@ -39,10 +44,10 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
-		this.getResourceListService();
+		this.getUnicornListService();
 	}
 
-	private getResourceListService(): void {
+	private getUnicornListService(): void {
 		const subs = this.baseService
 			.getPagingData(RESOURCE_PATH_CONST + '/unicorns', ResourceModel)
 			.subscribe((resp) => {
@@ -52,7 +57,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.subscribers.push(subs);
 	}
 
-	private createResourceService(): void {
+	private createUnicornService(): void {
 		const bodyReq = new ResourceReqModel('Test', 10, 'blue');
 
 		const subs = this.baseService
@@ -64,7 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.subscribers.push(subs);
 	}
 
-	private updateResourceService(): void {
+	private updateUnicornService(): void {
 		const bodyReq = new ResourceReqModel('Test 20', 20, 'Orange');
 
 		const subs = this.baseService
@@ -79,7 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.subscribers.push(subs);
 	}
 
-	private deleteResourceService(): void {
+	private deleteUnicornService(): void {
 		const subs = this.baseService
 			.deleteData(
 				RESOURCE_PATH_CONST + '/unicorns/6659974519f3e403e81e18a6',
