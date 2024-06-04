@@ -3,10 +3,10 @@ export class CommentReqModel {
 	email: string;
 	body: string;
 
-	constructor(name: string, email: string, body: string) {
-		this.name = name ?? '';
-		this.email = email ?? '';
-		this.body = body ?? '';
+	constructor(source: any) {
+		this.name = source?.fullName ?? '';
+		this.email = source?.email ?? '';
+		this.body = source?.body ?? '';
 	}
 
 	convert(): any {

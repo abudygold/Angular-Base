@@ -11,7 +11,7 @@ import {
 	generateHttpParams,
 } from '@adl/angular-ui';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -39,6 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	public value: string = '';
 	public activeOption: BaseOptionModel[] = [];
 	public isLoading: boolean = false;
+	public form!: FormGroup;
 
 	private unicornParam!: BaseParamReqModel;
 	private subscribers: Subscription[] = [];
@@ -62,7 +63,19 @@ export class AppComponent implements OnInit, OnDestroy {
 			}).toString()
 		);
 
+		this.initForm();
 		this.getUnicornListService();
+	}
+
+	private initForm(): void {
+		this.form = new FormGroup({
+			fullName: new FormControl(null, Validators.required),
+			email: new FormControl(null, [Validators.required, Validators.email]),
+			body: new FormControl(null, Validators.required),
+			gender: new FormControl(null, Validators.required),
+			genderRadio: new FormControl(null, Validators.required),
+			hobby: new FormControl(null, Validators.required),
+		});
 	}
 
 	private getUnicornListService(): void {
@@ -87,27 +100,20 @@ export class AppComponent implements OnInit, OnDestroy {
 	}
 
 	private createUnicornService(): void {
-		const bodyReq = new CommentReqModel(
-			'John Doe',
-			'john-doe@example.com',
-			'lorem ipsum'
-		);
+		const bodyReq = new CommentReqModel(this.form.getRawValue());
 
 		const subs = this.baseService
 			.postData(UNICORN_PATH_CONST, bodyReq)
-			.subscribe(() => {
-				// Write code here
+			.subscribe({
+				next: () => (this.isSubmit = false),
+				error: () => (this.isSubmit = false),
 			});
 
 		this.subscribers.push(subs);
 	}
 
 	private updateUnicornService(): void {
-		const bodyReq = new CommentReqModel(
-			'John Doe',
-			'john-doe@example.com',
-			'lorem ipsum'
-		);
+		const bodyReq = new CommentReqModel(this.form.getRawValue());
 
 		const subs = this.baseService
 			.putData(UNICORN_PATH_CONST + '/:id', bodyReq)
@@ -132,15 +138,31 @@ export class AppComponent implements OnInit, OnDestroy {
 		console.log(e);
 	}
 
-	onSave(): void {
-		this.isSubmit = true;
-		setTimeout(() => {
-			this.isSubmit = false;
-		}, 2000);
+	setValueField(value: any, control: string): void {
+		console.log('-- setValueField --', value);
+		this.form.get(control)?.setValue(value);
 	}
 
-	onChecked(e: CheckboxModel[]): void {
-		console.log(e.filter((t: CheckboxModel) => t.checked));
+	setValueChecked(options: CheckboxModel[], control: string): void {
+		console.log(
+			'-- setValueChecked --',
+			options.filter((t: CheckboxModel) => t.checked)
+		);
+		this.form
+			.get(control)
+			?.setValue(options.filter((t: CheckboxModel) => t.checked));
+	}
+
+	onSave(): void {
+		this.form.markAllAsTouched();
+		this.isSubmit = true;
+
+		if (!this.form.valid) {
+			setTimeout(() => (this.isSubmit = false));
+			return;
+		}
+
+		this.createUnicornService();
 	}
 
 	onUpdatePage(page: PageEvent): void {
@@ -152,8 +174,14 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.getUnicornListService();
 	}
 
-	onActionClicked(e: { action: string; row: any }): void {
-		console.log(e);
+	onActionClicked(event: { action: string; row: any }): void {
+		if (event.action === 'delete') this.deleteUnicornService();
+		else if (event.action === 'preview')
+			console.log('Write code here for preview data');
+		else if (event.action === 'edit')
+			console.log(
+				'Redirect to the edit form page or open the edit form dialog'
+			);
 	}
 
 	openDialog(): void {

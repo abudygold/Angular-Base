@@ -4,7 +4,7 @@
 	<div class="mb-3">
 		<adl-ui-input-text
 			[options]="{
-				label: 'Your Name',
+				label: 'Full Name',
 				appearance: 'outline',
 				matPrefix: {
 					icon: 'person',
@@ -12,13 +12,50 @@
 				field: {
 					value: '',
 					validation: {
-						validators: formValidator.firstName.validators,
-						message: formValidator.firstName.validationMessages,
+						validators: formValidator.fullName.validators,
+						message: formValidator.fullName.validationMessages,
 					},
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="onSearch($event)"></adl-ui-input-text>
+			(getValue)="setValueField($event, 'fullName')"></adl-ui-input-text>
+	</div>
+
+	<div class="mb-3">
+		<adl-ui-input-text
+			[options]="{
+				label: 'Email',
+				appearance: 'outline',
+				matPrefix: {
+					icon: 'email',
+				},
+				field: {
+					value: '',
+					validation: {
+						validators: formValidator.email.validators,
+						message: formValidator.email.validationMessages,
+					},
+				},
+			}"
+			[isSaveClicked]="isSubmit"
+			(getValue)="setValueField($event, 'email')"></adl-ui-input-text>
+	</div>
+
+	<div class="mb-3">
+		<adl-ui-input-text
+			[options]="{
+				label: 'Body',
+				appearance: 'outline',
+				field: {
+					value: '',
+					validation: {
+						validators: formValidator.body.validators,
+						message: formValidator.body.validationMessages,
+					},
+				},
+			}"
+			[isSaveClicked]="isSubmit"
+			(getValue)="setValueField($event, 'body')"></adl-ui-input-text>
 	</div>
 
 	<div class="mb-3">
@@ -49,7 +86,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="onSearch($event)"></adl-ui-select>
+			(getValue)="setValueField($event, 'gender')"></adl-ui-select>
 	</div>
 
 	<div class="mb-3">
@@ -77,7 +114,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="onSearch($event)"></adl-ui-radio>
+			(getValue)="setValueField($event, 'genderRadio')"></adl-ui-radio>
 	</div>
 
 	<div class="mb-3">
@@ -111,7 +148,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="onChecked($event)"></adl-ui-checkbox>
+			(getValue)="setValueChecked($event, 'hobby')"></adl-ui-checkbox>
 	</div>
 
 	<div class="d-flex gap-3 mb-3">
@@ -120,6 +157,7 @@
 				variant: 'flat',
 				color: 'primary',
 				name: 'Simpan',
+				disabled: isSubmit,
 			}"
 			(click)="onSave()"></adl-ui-button>
 
@@ -128,6 +166,7 @@
 				variant: 'stroked',
 				color: 'primary',
 				name: 'Batal',
+				disabled: isSubmit,
 			}"></adl-ui-button>
 	</div>
 

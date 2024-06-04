@@ -48,24 +48,22 @@ TableConfig.columns = [
 
 /* Form  */
 const SampleForm = {
-	firstName: {
-		validators: [
-			Validators.required,
-			Validators.minLength(10),
-			Validators.maxLength(30),
-		],
+	fullName: {
+		validators: [Validators.required],
 		validationMessages: [
-			{ type: 'required', message: 'First name is required' },
-			{ type: 'minlength', message: 'Minimum characters: 10' },
-			{ type: 'maxlength', message: 'Maximum characters: 30' },
+			{ type: 'required', message: 'Full name is required' },
 		],
 	},
-	lastName: {
-		validators: [Validators.required, Validators.maxLength(30)],
+	email: {
+		validators: [Validators.required, Validators.email],
 		validationMessages: [
-			{ type: 'required', message: 'Last name is required' },
-			{ type: 'maxlength', message: 'Maximum characters: 30' },
+			{ type: 'required', message: 'Email is required' },
+			{ type: 'email', message: "Email format doesn't correct" },
 		],
+	},
+	body: {
+		validators: [Validators.required],
+		validationMessages: [{ type: 'required', message: 'Body is required' }],
 	},
 	gender: {
 		validators: [Validators.required],
