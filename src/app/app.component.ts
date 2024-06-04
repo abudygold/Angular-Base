@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
 import { IconsList } from '../assets/svg/IconsList';
 import {
 	ACTIVE_ENUM,
-	UNICORN_PATH_CONST,
+	COMMENT_PATH_CONST,
 	SAMPLE_FORM_CONST,
 	TABLE_USER_CONST,
 } from './app-config.const';
@@ -56,6 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.activeOption = generateEnumOption(ACTIVE_ENUM);
 		this.unicornParam = new BaseParamReqModel();
 
+		/* Output: firstName=john&lastName=doe */
 		console.log(
 			generateHttpParams({
 				firstName: 'john',
@@ -82,7 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.isLoading = true;
 
 		const subs = this.baseService
-			.getPagingData(UNICORN_PATH_CONST, CommentModel, this.unicornParam)
+			.getPagingData(COMMENT_PATH_CONST, CommentModel, this.unicornParam)
 			.subscribe({
 				next: (resp) => {
 					const start =
@@ -103,7 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		const bodyReq = new CommentReqModel(this.form.getRawValue());
 
 		const subs = this.baseService
-			.postData(UNICORN_PATH_CONST, bodyReq)
+			.postData(COMMENT_PATH_CONST, bodyReq)
 			.subscribe({
 				next: () => (this.isSubmit = false),
 				error: () => (this.isSubmit = false),
@@ -116,9 +117,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		const bodyReq = new CommentReqModel(this.form.getRawValue());
 
 		const subs = this.baseService
-			.putData(UNICORN_PATH_CONST + '/:id', bodyReq)
-			.subscribe(() => {
-				// Write code here
+			.putData(COMMENT_PATH_CONST + '/:id', bodyReq)
+			.subscribe({
+				next: () => (this.isSubmit = false),
+				error: () => (this.isSubmit = false),
 			});
 
 		this.subscribers.push(subs);
@@ -126,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	private deleteUnicornService(): void {
 		const subs = this.baseService
-			.deleteData(UNICORN_PATH_CONST + '/:id', null)
+			.deleteData(COMMENT_PATH_CONST + '/:id', null)
 			.subscribe(() => {
 				// Write code here
 			});
@@ -134,8 +136,8 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.subscribers.push(subs);
 	}
 
-	onSearch(e: any): void {
-		console.log(e);
+	onSearch(txtInput: any): void {
+		console.log(txtInput);
 	}
 
 	setValueField(value: any, control: string): void {

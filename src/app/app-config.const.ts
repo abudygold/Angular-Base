@@ -78,7 +78,7 @@ const SampleForm = {
 
 export const TABLE_USER_CONST = TableConfig;
 export const SAMPLE_FORM_CONST = SampleForm;
-export const UNICORN_PATH_CONST =
+export const COMMENT_PATH_CONST =
 	'https://jsonplaceholder.typicode.com/comments';
 export enum ACTIVE_ENUM {
 	'Active' = 0,
