@@ -61,19 +61,19 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-						"production": {
-							"browserTarget": "adl-lib-test:build:production"
+            "production": {
+              "buildTarget": "adl-lib-test:build:production"
 						},
-						"development": {
-							"browserTarget": "adl-lib-test:build:development"
+            "development": {
+              "buildTarget": "adl-lib-test:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "adl-lib-test:build"
+          "options": {
+            "buildTarget": "adl-lib-test:build"
 					}
 				},
 				"test": {
