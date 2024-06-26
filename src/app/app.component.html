@@ -18,7 +18,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="setValueField($event, 'fullName')"></adl-ui-input-text>
+			(getValue)="setValueField($event, 'fullName')" />
 	</div>
 
 	<div class="mb-3">
@@ -38,7 +38,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="setValueField($event, 'email')"></adl-ui-input-text>
+			(getValue)="setValueField($event, 'email')" />
 	</div>
 
 	<div class="mb-3">
@@ -55,7 +55,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="setValueField($event, 'body')"></adl-ui-input-text>
+			(getValue)="setValueField($event, 'body')" />
 	</div>
 
 	<div class="mb-3">
@@ -86,7 +86,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="setValueField($event, 'gender')"></adl-ui-select>
+			(getValue)="setValueField($event, 'gender')" />
 	</div>
 
 	<div class="mb-3">
@@ -114,7 +114,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="setValueField($event, 'genderRadio')"></adl-ui-radio>
+			(getValue)="setValueField($event, 'genderRadio')" />
 	</div>
 
 	<div class="mb-3">
@@ -148,7 +148,7 @@
 				},
 			}"
 			[isSaveClicked]="isSubmit"
-			(getValue)="setValueChecked($event, 'hobby')"></adl-ui-checkbox>
+			(getValue)="setValueChecked($event, 'hobby')" />
 	</div>
 
 	<div class="d-flex gap-3 mb-3">
@@ -159,7 +159,7 @@
 				name: 'Simpan',
 				disabled: isSubmit,
 			}"
-			(click)="onSave()"></adl-ui-button>
+			(click)="onSave()" />
 
 		<adl-ui-button
 			[options]="{
@@ -167,7 +167,7 @@
 				color: 'primary',
 				name: 'Batal',
 				disabled: isSubmit,
-			}"></adl-ui-button>
+			}" />
 	</div>
 
 	<h1 class="text-center text-uppercase font-weight-bold mb-4">
@@ -181,7 +181,7 @@
 				color: 'primary',
 				name: 'Open Dialog',
 			}"
-			(click)="openDialog()"></adl-ui-button>
+			(click)="openDialog()" />
 	</div>
 
 	<h1 class="text-center text-uppercase font-weight-bold mb-4">
@@ -192,20 +192,23 @@
 		[options]="{
 			placeholder: 'Search',
 		}"
-		(searchValue)="onSearch($event)"></adl-ui-search>
+		(searchValue)="onSearch($event)" />
 
 	<ng-container *ngIf="!isLoading; else loadingTemplate">
 		<adl-ui-table
 			[table]="table"
 			(pagination)="onUpdatePage($event)"
-			(actionClicked)="onActionClicked($event)"></adl-ui-table>
+			(actionClicked)="onActionClicked($event)" />
 	</ng-container>
 
 	<ng-template #loadingTemplate> Please wait... </ng-template>
 
 	<h1 class="text-center text-uppercase font-weight-bold mb-4">--- Pipe ---</h1>
 
-	<p class="mb-3">{{ 100000 | rupiah }}</p>
+	<p class="mb-3">{{ 1585000 | currencyIntl }}</p>
+	<p class="mb-3">{{ 1585000 | currencyIntl: 'id-ID' : 'IDR' }}</p>
+	<p class="mb-3">{{ 1585000 | currencyIntl: 'SA' : 'SAR' }}</p>
+	<p class="mb-3">{{ 1585000 | currencyIntl: 'HK' : 'HKD' }}</p>
 
 	<h1 class="text-center text-uppercase font-weight-bold mb-4">
 		--- Directive ---
@@ -240,11 +243,21 @@
 		style="display: flex; justify-content: space-between; gap: 1rem">
 		<mat-form-field appearance="outline" style="width: 100%">
 			<mat-label>Input Currency Directive (Form Control)</mat-label>
-			<input matInput [formControl]="formControl" appInputCurrency />
+			<input
+				matInput
+				[formControl]="formControl"
+				appInputCurrency
+				countryCode="SA"
+				currencyCode="SAR" />
 		</mat-form-field>
 		<mat-form-field appearance="outline" style="width: 100%">
 			<mat-label>Input Currency Directive (ngModel)</mat-label>
-			<input matInput [(ngModel)]="value" appInputCurrency />
+			<input
+				matInput
+				[(ngModel)]="value"
+				appInputCurrency
+				countryCode="id-ID"
+				currencyCode="IDR" />
 		</mat-form-field>
 	</div>
 </div>
