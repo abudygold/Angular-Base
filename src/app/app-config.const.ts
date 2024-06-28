@@ -1,4 +1,4 @@
-import { TableModel } from '@adl/angular-ui';
+import { TableModel } from '@adlfe/angular-ui';
 import { Validators } from '@angular/forms';
 
 /* Table  */
