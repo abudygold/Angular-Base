@@ -1,4 +1,4 @@
-import { AdlLibModule } from '@adl/angular-ui';
+import { AdlLibModule } from '@adlfe/angular-ui';
 import {
 	provideHttpClient,
 	withInterceptorsFromDi,
