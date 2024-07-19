@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use './theme/m3-theme' as theme;
+
+@include mat.core();
+
+:root {
+	@include mat.all-component-themes(theme.$light-theme);
+	@include mat.color-variants-backwards-compatibility(theme.$light-theme);
+	// @include mat.typography-hierarchy(theme.$light-theme);
+	// @include mat.checkbox-color(theme.$light-theme, $color-variant: primary);
+	// @include mat.radio-color(theme.$light-theme, $color-variant: primary);
+
+	.dark {
+		@include mat.all-component-colors(theme.$dark-theme);
+		@include mat.color-variants-backwards-compatibility(theme.$dark-theme);
+		// @include mat.typography-hierarchy(theme.$dark-theme);
+		// @include mat.checkbox-color(theme.$dark-theme, $color-variant: primary);
+		// @include mat.radio-color(theme.$light-theme, $color-variant: primary);
+	}
+}

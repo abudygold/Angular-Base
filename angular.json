@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"adl-lib-test": {
+		"angular-app": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -18,17 +18,14 @@
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
 						"preserveSymlinks": true,
-						"outputPath": "dist/adl-lib-test",
+						"outputPath": "dist/angular-app",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": ["zone.js"],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
 						"assets": ["src/favicon.ico", "src/assets"],
-						"styles": [
-							"@angular/material/prebuilt-themes/indigo-pink.css",
-							"src/styles.scss"
-						],
+						"styles": ["src/styles/styles.scss"],
 						"scripts": []
 					},
 					"configurations": {
@@ -53,7 +50,13 @@
 							"vendorChunk": true,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true
+							"namedChunks": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.development.ts"
+								}
+							]
 						}
 					},
 					"defaultConfiguration": "production"
@@ -61,19 +64,19 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-            "production": {
-              "buildTarget": "adl-lib-test:build:production"
+						"production": {
+							"buildTarget": "angular-app:build:production"
 						},
-            "development": {
-              "buildTarget": "adl-lib-test:build:development"
+						"development": {
+							"buildTarget": "angular-app:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "adl-lib-test:build"
+					"options": {
+						"buildTarget": "angular-app:build"
 					}
 				},
 				"test": {
@@ -83,10 +86,7 @@
 						"tsConfig": "tsconfig.spec.json",
 						"inlineStyleLanguage": "scss",
 						"assets": ["src/favicon.ico", "src/assets"],
-						"styles": [
-							"@angular/material/prebuilt-themes/indigo-pink.css",
-							"src/styles.scss"
-						],
+						"styles": ["src/styles/styles.scss"],
 						"scripts": []
 					}
 				},

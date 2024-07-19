@@ -1,0 +1,9 @@
+@if (!isLoading) {
+	<app-example-form
+		[selectedData]="selectedData"
+		(formValue)="onSave($event)"></app-example-form>
+} @else {
+	<div class="tw-flex tw-justify-center tw-mt-36">
+		<mat-spinner></mat-spinner>
+	</div>
+}

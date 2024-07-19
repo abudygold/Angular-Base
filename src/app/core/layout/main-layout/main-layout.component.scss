@@ -1,0 +1,20 @@
+.main-layout {
+	.menu-item {
+		border-left: 5px solid;
+		border-left-color: rgba(0, 0, 0, 0);
+	}
+
+	.selected-menu-item {
+		border-left-color: #ed1c24;
+		background: rgba(0, 0, 0, 0.05);
+	}
+
+	.inline {
+		&.toast-container {
+			position: relative;
+			.ngx-toastr {
+				width: 100%;
+			}
+		}
+	}
+}

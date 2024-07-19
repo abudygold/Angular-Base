@@ -1,0 +1,148 @@
+$font-sizes: (
+	10px: 10px,
+	12px: 12px,
+	14px: 14px,
+	16px: 16px,
+	18px: 18px,
+	20px: 20px,
+	24px: 24px,
+	28px: 28px,
+	32px: 32px,
+	36px: 36px,
+	48px: 48px,
+);
+
+$font-weights: (
+	thin: 100,
+	xlight: 200,
+	light: 300,
+	regular: 400,
+	medium: 500,
+	sbold: 600,
+	bold: 700,
+	xbold: 800,
+);
+
+@each $size, $value in $font-sizes {
+	.font-#{'' + $size} {
+		font-size: $value !important;
+	}
+}
+
+@each $weight, $value in $font-weights {
+	.font-#{'' + $weight} {
+		font-weight: $value !important;
+	}
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	@each $size, $value in $font-sizes {
+		.font-xs-#{'' + $size} {
+			font-size: $value !important;
+		}
+	}
+
+	@each $weight, $value in $font-weights {
+		.font-xs-#{'' + $weight} {
+			font-weight: $value !important;
+		}
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	@each $size, $value in $font-sizes {
+		.font-sm-#{'' + $size} {
+			font-size: $value !important;
+		}
+	}
+
+	@each $weight, $value in $font-weights {
+		.font-sm-#{'' + $weight} {
+			font-weight: $value !important;
+		}
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	@each $size, $value in $font-sizes {
+		.font-md-#{'' + $size} {
+			font-size: $value !important;
+		}
+	}
+
+	@each $weight, $value in $font-weights {
+		.font-md-#{'' + $weight} {
+			font-weight: $value !important;
+		}
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	@each $size, $value in $font-sizes {
+		.font-lg-#{'' + $size} {
+			font-size: $value !important;
+		}
+	}
+
+	@each $weight, $value in $font-weights {
+		.font-lg-#{'' + $weight} {
+			font-weight: $value !important;
+		}
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+	@each $size, $value in $font-sizes {
+		.font-xl-#{'' + $size} {
+			font-size: $value !important;
+		}
+	}
+
+	@each $weight, $value in $font-weights {
+		.font-xl-#{'' + $weight} {
+			font-weight: $value !important;
+		}
+	}
+}
+
+/* Inter */
+.font-Inter {
+	font-family: 'Inter';
+}
+
+.font-InterBlack {
+	font-family: 'InterBlack';
+}
+
+.font-InterMedium {
+	font-family: 'InterMedium';
+}
+
+.font-InterThin {
+	font-family: 'InterThin';
+}
+
+.font-InterSemiBold {
+	font-family: 'InterSemiBold';
+}
+
+.font-InterBold {
+	font-family: 'InterBold';
+}
+
+.font-InterExtraBold {
+	font-family: 'InterExtraBold';
+}
+
+.font-InterLight {
+	font-family: 'InterLight';
+}
+
+.font-InterExtraLight {
+	font-family: 'InterExtraLight';
+}

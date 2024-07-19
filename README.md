@@ -1,6 +1,27 @@
-# AdlLibTest
+# Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.4.
+
+## Tools
+
+- [`NVM for Windows`](https://github.com/coreybutler/nvm-windows)
+- [`Angular Dev`](https://angular.dev/)
+- [`Angular Material UI components`](https://material.angular.io/components/categories)
+
+## Prerequisites
+
+- `Install node version 20 or latest`
+- [`Folder structure and naming file`](https://gitlab.axiatadigitallabs.com/fe-adli/angular-app/-/blob/master/STYLE-GUIDE-CODE.md)
+- [`Branching and merge flow`](https://gitlab.axiatadigitallabs.com/fe-adli/angular-app/-/raw/master/BRANCHING-AND-MERGE-FLOW.png)
+
+## Guide to update your Angular application
+
+> Example upgrade angular version 16 to 18. Update Guide: [`angular.dev`](https://angular.dev/update-guide)
+
+- In the application's project directory, run `run ng update @angular/core@17 @angular/cli@17 @angular-eslint/schematics@17` to update your application to Angular v17.
+- Run `ng update @angular/material@17`.
+- In the application's project directory, `run ng update @angular/core@18 @angular/cli@18 @angular-eslint/schematics@18` to update your application to Angular v18.
+- Run `ng update @angular/material@18`.
 
 ## Development server
 

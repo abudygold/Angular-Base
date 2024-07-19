@@ -1,0 +1,224 @@
+<app-heading-ui>
+	<h2>Detail Comment</h2>
+	<span>Detail data of comment</span>
+
+	<adl-ui-button
+		ngProjectAs="heading-right"
+		[options]="{
+			variant: 'flat',
+			name: 'Back',
+			icon: 'arrow_back',
+		}"
+		(click)="navigateToList()" />
+</app-heading-ui>
+
+<app-card-ui>
+	<mat-card-content ngProjectAs="card-content">
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Use StandAlone Component ---
+		</h1>
+
+		<div class="tw-text-center tw-mb-3">
+			<app-not-found></app-not-found>
+		</div>
+
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Pipe ---
+		</h1>
+
+		<p class="tw-mb-3">{{ 1585000 | currencyIntl }}</p>
+		<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'id-ID' : 'IDR' }}</p>
+		<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'SA' : 'SAR' }}</p>
+		<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'HK' : 'HKD' }}</p>
+
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Directive ---
+		</h1>
+
+		<div class="tw-flex tw-justify-between tw-gap-4 tw-mb-3">
+			<mat-form-field appearance="outline" class="tw-w-full">
+				<mat-label>Empty Space Directive (Form Control)</mat-label>
+				<input matInput [formControl]="formControl" appEmptySpace />
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="tw-w-full">
+				<mat-label>Empty Space Directive (ngModel)</mat-label>
+				<input matInput [(ngModel)]="value" appEmptySpace />
+			</mat-form-field>
+		</div>
+		<div class="tw-flex tw-justify-between tw-gap-4 tw-mb-3">
+			<mat-form-field appearance="outline" class="tw-w-full">
+				<mat-label>Only Number Directive (Form Control)</mat-label>
+				<input matInput [formControl]="formControl" appOnlyNumber />
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="tw-w-full">
+				<mat-label>Only Number Directive (ngModel)</mat-label>
+				<input matInput [(ngModel)]="value" appOnlyNumber />
+			</mat-form-field>
+		</div>
+		<div class="tw-flex tw-justify-between tw-gap-4 tw-mb-3">
+			<mat-form-field appearance="outline" class="tw-w-full">
+				<mat-label>Input Currency Directive (Form Control)</mat-label>
+				<input
+					matInput
+					[formControl]="formControl"
+					appInputCurrency
+					countryCode="SA"
+					currencyCode="SAR" />
+			</mat-form-field>
+			<mat-form-field appearance="outline" class="tw-w-full">
+				<mat-label>Input Currency Directive (ngModel)</mat-label>
+				<input
+					matInput
+					[(ngModel)]="value"
+					appInputCurrency
+					countryCode="id-ID"
+					currencyCode="IDR" />
+			</mat-form-field>
+		</div>
+
+		<!-- Button -->
+		<!-- <h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">--- Button ---</h1>
+		
+		<section class="tw-my-3">
+			<div class="tw-text-center">Basic</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button mat-button>Basic</button>
+				<button mat-button color="primary">Primary</button>
+				<button mat-button color="accent">Accent</button>
+				<button mat-button color="warn">Warn</button>
+				<button mat-button disabled>Disabled</button>
+				<a mat-button href="https://www.google.com/" target="_blank">Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center">Raised</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button mat-raised-button>Basic</button>
+				<button mat-raised-button color="primary">Primary</button>
+				<button mat-raised-button color="accent">Accent</button>
+				<button mat-raised-button color="warn">Warn</button>
+				<button mat-raised-button disabled>Disabled</button>
+				<a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center">Stroked</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button mat-stroked-button>Basic</button>
+				<button mat-stroked-button color="primary">Primary</button>
+				<button mat-stroked-button color="accent">Accent</button>
+				<button mat-stroked-button color="warn">Warn</button>
+				<button mat-stroked-button disabled>Disabled</button>
+				<a mat-stroked-button href="https://www.google.com/" target="_blank"
+					>Link</a
+				>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center">Flat</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button mat-flat-button>Basic</button>
+				<button mat-flat-button color="primary">Primary</button>
+				<button mat-flat-button color="accent">Accent</button>
+				<button mat-flat-button color="warn">Warn</button>
+				<button mat-flat-button disabled>Disabled</button>
+				<a mat-flat-button href="https://www.google.com/" target="_blank">Link</a>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center">Icon</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button
+					mat-icon-button
+					aria-label="Example icon button with a vertical three dot icon">
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<button
+					mat-icon-button
+					color="primary"
+					aria-label="Example icon button with a home icon">
+					<mat-icon>home</mat-icon>
+				</button>
+				<button
+					mat-icon-button
+					color="accent"
+					aria-label="Example icon button with a menu icon">
+					<mat-icon>menu</mat-icon>
+				</button>
+				<button
+					mat-icon-button
+					color="warn"
+					aria-label="Example icon button with a heart icon">
+					<mat-icon>favorite</mat-icon>
+				</button>
+				<button
+					mat-icon-button
+					disabled
+					aria-label="Example icon button with a open in new tab icon">
+					<mat-icon>open_in_new</mat-icon>
+				</button>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center">FAB</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button
+					mat-fab
+					color="primary"
+					aria-label="Example icon button with a delete icon">
+					<mat-icon>delete</mat-icon>
+				</button>
+				<button
+					mat-fab
+					color="accent"
+					aria-label="Example icon button with a bookmark icon">
+					<mat-icon>bookmark</mat-icon>
+				</button>
+				<button
+					mat-fab
+					color="warn"
+					aria-label="Example icon button with a home icon">
+					<mat-icon>home</mat-icon>
+				</button>
+				<button mat-fab disabled aria-label="Example icon button with a heart icon">
+					<mat-icon>favorite</mat-icon>
+				</button>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center">Mini FAB</div>
+			<div class="tw-flex tw-justify-center tw-gap-2">
+				<button
+					mat-mini-fab
+					color="primary"
+					aria-label="Example icon button with a menu icon">
+					<mat-icon>menu</mat-icon>
+				</button>
+				<button
+					mat-mini-fab
+					color="accent"
+					aria-label="Example icon button with a plus one icon">
+					<mat-icon>plus_one</mat-icon>
+				</button>
+				<button
+					mat-mini-fab
+					color="warn"
+					aria-label="Example icon button with a filter list icon">
+					<mat-icon>filter_list</mat-icon>
+				</button>
+				<button
+					mat-mini-fab
+					disabled
+					aria-label="Example icon button with a home icon">
+					<mat-icon>home</mat-icon>
+				</button>
+			</div>
+		</section> -->
+	</mat-card-content>
+</app-card-ui>

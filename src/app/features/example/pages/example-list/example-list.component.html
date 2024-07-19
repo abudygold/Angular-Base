@@ -1,0 +1,38 @@
+<app-heading-ui>
+	<h2>Comment Management</h2>
+	<span>This is the list of comments</span>
+
+	<adl-ui-button
+		ngProjectAs="heading-right"
+		[options]="{
+			variant: 'flat',
+			name: 'Add New Comment',
+			icon: 'add_circle',
+		}"
+		(click)="navigateToCreatePage()" />
+</app-heading-ui>
+
+<app-card-ui>
+	<mat-card-content ngProjectAs="card-content">
+		<div class="tw-mb-4 tw-w-full md:tw-w-1/4">
+			<adl-ui-search
+				[options]="{
+					placeholder: 'Search',
+				}"
+				(searchValue)="onSearch($event)" />
+		</div>
+
+		@if (!isLoading) {
+			<div class="table-responsive">
+				<adl-ui-table
+					[table]="table"
+					(pagination)="onUpdatePage($event)"
+					(actionClicked)="onActionClicked($event)" />
+			</div>
+		} @else {
+			<div class="tw-flex tw-justify-center tw-py-10">
+				<mat-spinner></mat-spinner>
+			</div>
+		}
+	</mat-card-content>
+</app-card-ui>

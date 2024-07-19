@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import './customize-material.scss';
+@import 'ngx-toastr/toastr';
+
+@import './fonts.scss';
+
+@import './abstracts/color';
+@import './base/font';
+@import './component/input';
+@import './component/table';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Inter, 'Helvetica Neue', sans-serif;
+}
+
+@import './theme/easy-theme.scss';

@@ -1,0 +1,85 @@
+<app-heading-ui>
+	<h2>{{ selectedData ? 'Edit' : 'Add' }} Comment</h2>
+	<span>Please fill the form below</span>
+</app-heading-ui>
+
+<app-card-ui>
+	<mat-card-content ngProjectAs="card-content">
+		<div class="tw-mb-3">
+			<adl-ui-input-text
+				[options]="{
+					label: 'Name',
+					appearance: 'outline',
+					matPrefix: {
+						icon: 'person',
+					},
+					field: {
+						value: this.form.get('name')?.value,
+						validation: {
+							validators: formValidator.name.validators,
+							message: formValidator.name.validationMessages,
+						},
+					},
+				}"
+				[isSaveClicked]="isSubmit"
+				(getValue)="setValueField($event, 'name')" />
+		</div>
+
+		<div class="tw-mb-3">
+			<adl-ui-input-text
+				[options]="{
+					label: 'Email',
+					appearance: 'outline',
+					matPrefix: {
+						icon: 'email',
+					},
+					field: {
+						value: this.form.get('email')?.value,
+						validation: {
+							validators: formValidator.email.validators,
+							message: formValidator.email.validationMessages,
+						},
+					},
+				}"
+				[isSaveClicked]="isSubmit"
+				(getValue)="setValueField($event, 'email')" />
+		</div>
+
+		<div class="tw-mb-3">
+			<adl-ui-input-text
+				[options]="{
+					label: 'Body',
+					appearance: 'outline',
+					characterLimit: 250,
+					field: {
+						isTextArea: true,
+						value: this.form.get('body')?.value,
+						validation: {
+							validators: formValidator.body.validators,
+							message: formValidator.body.validationMessages,
+						},
+					},
+				}"
+				[isSaveClicked]="isSubmit"
+				(getValue)="setValueField($event, 'body')" />
+		</div>
+
+		<div class="tw-flex tw-justify-end tw-gap-3 tw-mb-3">
+			<adl-ui-button
+				[options]="{
+					variant: 'stroked',
+					name: 'Batal',
+					disabled: isSubmit,
+				}"
+				(click)="onCancel()" />
+
+			<adl-ui-button
+				[options]="{
+					variant: 'flat',
+					name: 'Simpan',
+					disabled: isSubmit,
+				}"
+				(click)="onSave()" />
+		</div>
+	</mat-card-content>
+</app-card-ui>

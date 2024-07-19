@@ -1,0 +1,48 @@
+body {
+	/* Base Color */
+	--primary: #ed1c24;
+	--error: #ba1a1a;
+
+	/* Table */
+	--mat-table-row-item-label-text-font: Inter, 'Helvetica Neue', sans-serif;
+	--mat-table-header-headline-font: Inter, 'Helvetica Neue', sans-serif;
+
+	/* Sidenav */
+	--mat-sidenav-container-shape: 0;
+	--mat-sidenav-container-background-color: #231f20;
+	--mat-sidenav-content-background-color: rgb(242, 242, 242);
+
+	/* List */
+	--mat-list-active-indicator-shape: 0;
+	--mdc-list-list-item-label-text-size: 14px;
+	// --mdc-list-list-item-label-text-color: white;
+	--mdc-list-list-item-leading-icon-color: white;
+	--mat-list-active-indicator-color: #5c4200;
+	--mdc-list-list-item-hover-state-layer-opacity: 0.08;
+	// --mdc-list-list-item-hover-label-text-color: white;
+	--mdc-list-list-item-hover-state-layer-color: white;
+	--mdc-list-list-item-hover-leading-icon-color: rgba(255, 255, 255, 0.5);
+	--mdc-list-list-item-hover-trailing-icon-color: rgba(255, 255, 255, 0.5);
+	--mdc-list-list-item-focus-state-layer-opacity: 0.24;
+	--mdc-list-list-item-focus-label-text-color: black;
+	--mdc-list-list-item-focus-state-layer-color: white;
+
+	/* Button */
+	--mdc-outlined-button-outline-color: var(--primary);
+
+	/* Dialog */
+	--mdc-dialog-subhead-size: 18px;
+	--mdc-dialog-subhead-weight: 700;
+	--mdc-dialog-subhead-line-height: 24px;
+	--mdc-dialog-subhead-tracking: 1px;
+
+	/* Form Field */
+	--mat-form-field-subscript-text-line-height: 2rem;
+	--mat-form-field-subscript-text-size: 12px;
+
+	/* Select */
+	--mat-select-panel-background-color: #ffffff;
+
+	/* Pagination */
+	--mat-paginator-container-text-size: 14px;
+}

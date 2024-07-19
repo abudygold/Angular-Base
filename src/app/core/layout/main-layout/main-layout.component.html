@@ -1,0 +1,42 @@
+<mat-toolbar>
+	<button mat-icon-button (click)="isVisible = !isVisible">
+		<mat-icon>menu</mat-icon>
+	</button>
+
+	<span>My Application</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="tw-min-h-screen main-layout">
+	<mat-sidenav
+		[opened]="isBrowser ? 'opened' : isVisible"
+		[mode]="!isBrowser ? 'over' : 'side'"
+		[style.width]="isVisible ? '250px' : isBrowser ? '65px' : '0'">
+		<mat-nav-list>
+			<a
+				*ngFor="let item of menuItems()"
+				mat-list-item
+				class="menu-item"
+				routerLinkActive="selected-menu-item"
+				#rla="routerLinkActive"
+				[routerLink]="item.route"
+				[activated]="rla.isActive">
+				<mat-icon
+					[fontSet]="
+						rla.isActive ? 'material-icons' : 'material-icons-outlined'
+					"
+					matListItemIcon>
+					{{ item.icon }}
+				</mat-icon>
+				<span matListItemTitle>{{ item.label }}</span>
+			</a>
+		</mat-nav-list>
+	</mat-sidenav>
+
+	<mat-sidenav-content
+		class="tw-p-4 tw-min-h-full"
+		[style.marginLeft]="isVisible ? '250px' : isBrowser ? '65px' : '0'">
+		<div aria-live="polite" toastContainer></div>
+
+		<router-outlet></router-outlet>
+	</mat-sidenav-content>
+</mat-sidenav-container>
