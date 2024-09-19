@@ -1,0 +1,19 @@
+mat-drawer {
+	&.filter-ui {
+		width: 400px;
+		height: calc(100vh - 7px);
+		margin: 4px;
+		border-radius: 16px !important;
+		.filter-spacing {
+			padding: 16px 24px;
+		}
+	}
+}
+
+@media only screen and (max-width: 390px) {
+	mat-drawer {
+		&.filter-ui {
+			width: auto;
+		}
+	}
+}

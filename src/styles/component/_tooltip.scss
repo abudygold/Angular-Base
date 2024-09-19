@@ -1,0 +1,23 @@
+/* .html-tooltip {
+	&.mat-mdc-tooltip-panel-above,
+	&.mat-mdc-tooltip-panel-below {
+		left: 640px !important;
+	}
+
+	&.mat-mdc-tooltip-panel-left,
+	&.mat-mdc-tooltip-panel-right {
+		top: 520px !important;
+	}
+} */
+
+mat-tooltip-component {
+	.mdc-tooltip__surface {
+		padding: 12px;
+		min-width: max-content;
+		color: $color-text !important;
+		border: 1px solid $color-border;
+		background-color: $color-surface !important;
+		border-radius: 8px !important;
+		box-shadow: $color-shadow-overlay;
+	}
+}

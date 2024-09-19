@@ -2,223 +2,424 @@
 	<h2>Detail Comment</h2>
 	<span>Detail data of comment</span>
 
-	<adl-ui-button
+	<button
 		ngProjectAs="heading-right"
-		[options]="{
-			variant: 'flat',
-			name: 'Back',
-			icon: 'arrow_back',
-		}"
-		(click)="navigateToList()" />
+		mat-raised-button
+		color="primary"
+		class="!tw-rounded-full"
+		(click)="navigateToList()">
+		<mat-icon>arrow_back</mat-icon> Back
+	</button>
 </app-heading-ui>
 
 <app-card-ui>
 	<mat-card-content ngProjectAs="card-content">
 		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
-			--- Use StandAlone Component ---
-		</h1>
-
-		<div class="tw-text-center tw-mb-3">
-			<app-not-found></app-not-found>
-		</div>
-
-		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
 			--- Pipe ---
 		</h1>
 
-		<p class="tw-mb-3">{{ 1585000 | currencyIntl }}</p>
-		<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'id-ID' : 'IDR' }}</p>
-		<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'SA' : 'SAR' }}</p>
-		<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'HK' : 'HKD' }}</p>
+		<section class="tw-flex tw-flex-col md:tw-flex-row tw-justify-around">
+			<p class="tw-mb-3">{{ 1585000 | currencyIntl }}</p>
+			<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'id-ID' : 'IDR' }}</p>
+			<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'SA' : 'SAR' }}</p>
+			<p class="tw-mb-3">{{ 1585000 | currencyIntl: 'HK' : 'HKD' }}</p>
+		</section>
+
+		<mat-divider class="!tw-my-5"></mat-divider>
 
 		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
 			--- Directive ---
 		</h1>
 
-		<div class="tw-flex tw-justify-between tw-gap-4 tw-mb-3">
-			<mat-form-field appearance="outline" class="tw-w-full">
-				<mat-label>Empty Space Directive (Form Control)</mat-label>
-				<input matInput [formControl]="formControl" appEmptySpace />
-			</mat-form-field>
-			<mat-form-field appearance="outline" class="tw-w-full">
-				<mat-label>Empty Space Directive (ngModel)</mat-label>
-				<input matInput [(ngModel)]="value" appEmptySpace />
-			</mat-form-field>
-		</div>
-		<div class="tw-flex tw-justify-between tw-gap-4 tw-mb-3">
-			<mat-form-field appearance="outline" class="tw-w-full">
-				<mat-label>Only Number Directive (Form Control)</mat-label>
-				<input matInput [formControl]="formControl" appOnlyNumber />
-			</mat-form-field>
-			<mat-form-field appearance="outline" class="tw-w-full">
-				<mat-label>Only Number Directive (ngModel)</mat-label>
-				<input matInput [(ngModel)]="value" appOnlyNumber />
-			</mat-form-field>
-		</div>
-		<div class="tw-flex tw-justify-between tw-gap-4 tw-mb-3">
-			<mat-form-field appearance="outline" class="tw-w-full">
-				<mat-label>Input Currency Directive (Form Control)</mat-label>
-				<input
-					matInput
-					[formControl]="formControl"
-					appInputCurrency
-					countryCode="SA"
-					currencyCode="SAR" />
-			</mat-form-field>
-			<mat-form-field appearance="outline" class="tw-w-full">
-				<mat-label>Input Currency Directive (ngModel)</mat-label>
-				<input
-					matInput
-					[(ngModel)]="value"
-					appInputCurrency
-					countryCode="id-ID"
-					currencyCode="IDR" />
-			</mat-form-field>
+		<div
+			class="tw-flex tw-flex-col md:tw-flex-row tw-justify-around tw-gap-4 tw-mb-3">
+			<adl-ui-input-text
+				[options]="{
+					label: 'Empty Space',
+					appearance: 'outline',
+					placeholder: 'Empty Space Directive',
+					disabled: true,
+					field: {
+						value: '',
+					},
+				}" />
+
+			<adl-ui-input-text
+				[options]="{
+					label: 'Only Number',
+					appearance: 'outline',
+					placeholder: 'Only Number Directive',
+					field: {
+						value: '',
+						directive: {
+							onlyNumber: true,
+						},
+					},
+				}" />
+
+			<adl-ui-input-text
+				[options]="{
+					label: 'Input Currency',
+					appearance: 'outline',
+					placeholder: 'Input Currency Directive',
+					field: {
+						value: '',
+						directive: {
+							inputCurrency: {
+								countryCode: 'id-ID',
+								currencyCode: 'IDR',
+							},
+						},
+					},
+				}" />
 		</div>
 
+		<mat-divider class="!tw-my-5"></mat-divider>
+
 		<!-- Button -->
-		<!-- <h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">--- Button ---</h1>
-		
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Button ---
+		</h1>
+
 		<section class="tw-my-3">
-			<div class="tw-text-center">Basic</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
-				<button mat-button>Basic</button>
-				<button mat-button color="primary">Primary</button>
-				<button mat-button color="accent">Accent</button>
-				<button mat-button color="warn">Warn</button>
-				<button mat-button disabled>Disabled</button>
-				<a mat-button href="https://www.google.com/" target="_blank">Link</a>
-			</div>
-		</section>
-		<mat-divider></mat-divider>
-		<section class="tw-my-3">
-			<div class="tw-text-center">Raised</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
-				<button mat-raised-button>Basic</button>
-				<button mat-raised-button color="primary">Primary</button>
-				<button mat-raised-button color="accent">Accent</button>
-				<button mat-raised-button color="warn">Warn</button>
-				<button mat-raised-button disabled>Disabled</button>
-				<a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
-			</div>
-		</section>
-		<mat-divider></mat-divider>
-		<section class="tw-my-3">
-			<div class="tw-text-center">Stroked</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
-				<button mat-stroked-button>Basic</button>
-				<button mat-stroked-button color="primary">Primary</button>
-				<button mat-stroked-button color="accent">Accent</button>
-				<button mat-stroked-button color="warn">Warn</button>
-				<button mat-stroked-button disabled>Disabled</button>
-				<a mat-stroked-button href="https://www.google.com/" target="_blank"
-					>Link</a
-				>
-			</div>
-		</section>
-		<mat-divider></mat-divider>
-		<section class="tw-my-3">
-			<div class="tw-text-center">Flat</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
-				<button mat-flat-button>Basic</button>
-				<button mat-flat-button color="primary">Primary</button>
-				<button mat-flat-button color="accent">Accent</button>
-				<button mat-flat-button color="warn">Warn</button>
-				<button mat-flat-button disabled>Disabled</button>
-				<a mat-flat-button href="https://www.google.com/" target="_blank">Link</a>
-			</div>
-		</section>
-		<mat-divider></mat-divider>
-		<section class="tw-my-3">
-			<div class="tw-text-center">Icon</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
-				<button
-					mat-icon-button
-					aria-label="Example icon button with a vertical three dot icon">
-					<mat-icon>more_vert</mat-icon>
+			<div class="tw-text-center tw-mb-3">Primary</div>
+
+			<div
+				class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-2">
+				<button mat-raised-button color="primary" class="!tw-rounded-none">
+					Button CTA
 				</button>
+				<button mat-raised-button color="primary">
+					<mat-icon>home</mat-icon> Button CTA
+				</button>
+				<button mat-raised-button color="primary" class="!tw-rounded-full">
+					Button CTA <mat-icon iconPositionEnd>home</mat-icon>
+				</button>
+				<button mat-raised-button color="primary" disabled>Button CTA</button>
+			</div>
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center tw-mb-3">Secondary</div>
+
+			<div
+				class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-2">
 				<button
-					mat-icon-button
+					mat-raised-button
 					color="primary"
-					aria-label="Example icon button with a home icon">
-					<mat-icon>home</mat-icon>
+					class="secondary !tw-rounded-none">
+					Button CTA
+				</button>
+				<button mat-raised-button color="primary" class="secondary">
+					<mat-icon>home</mat-icon> Button CTA
 				</button>
 				<button
-					mat-icon-button
-					color="accent"
-					aria-label="Example icon button with a menu icon">
-					<mat-icon>menu</mat-icon>
+					mat-raised-button
+					color="primary"
+					class="secondary !tw-rounded-full">
+					Button CTA <mat-icon iconPositionEnd>home</mat-icon>
 				</button>
-				<button
-					mat-icon-button
-					color="warn"
-					aria-label="Example icon button with a heart icon">
-					<mat-icon>favorite</mat-icon>
-				</button>
-				<button
-					mat-icon-button
-					disabled
-					aria-label="Example icon button with a open in new tab icon">
-					<mat-icon>open_in_new</mat-icon>
+				<button mat-raised-button color="primary" class="secondary" disabled>
+					Button CTA
 				</button>
 			</div>
 		</section>
 		<mat-divider></mat-divider>
 		<section class="tw-my-3">
-			<div class="tw-text-center">FAB</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
+			<div class="tw-text-center tw-mb-3">Secondary Gray</div>
+
+			<div
+				class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-2">
 				<button
-					mat-fab
+					mat-raised-button
 					color="primary"
-					aria-label="Example icon button with a delete icon">
-					<mat-icon>delete</mat-icon>
+					class="secondary-gray !tw-rounded-none">
+					Button CTA
+				</button>
+				<button mat-raised-button color="primary" class="secondary-gray">
+					<mat-icon>home</mat-icon> Button CTA
 				</button>
 				<button
-					mat-fab
-					color="accent"
-					aria-label="Example icon button with a bookmark icon">
-					<mat-icon>bookmark</mat-icon>
+					mat-raised-button
+					color="primary"
+					class="secondary-gray !tw-rounded-full">
+					Button CTA <mat-icon iconPositionEnd>home</mat-icon>
 				</button>
 				<button
-					mat-fab
-					color="warn"
-					aria-label="Example icon button with a home icon">
-					<mat-icon>home</mat-icon>
-				</button>
-				<button mat-fab disabled aria-label="Example icon button with a heart icon">
-					<mat-icon>favorite</mat-icon>
+					mat-raised-button
+					color="primary"
+					class="secondary-gray"
+					disabled>
+					Button CTA
 				</button>
 			</div>
 		</section>
 		<mat-divider></mat-divider>
 		<section class="tw-my-3">
-			<div class="tw-text-center">Mini FAB</div>
-			<div class="tw-flex tw-justify-center tw-gap-2">
-				<button
-					mat-mini-fab
-					color="primary"
-					aria-label="Example icon button with a menu icon">
-					<mat-icon>menu</mat-icon>
+			<div class="tw-text-center tw-mb-3">Tertiary</div>
+
+			<div
+				class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-2">
+				<button mat-button class="tertiary !tw-rounded-none">Button CTA</button>
+				<button mat-button class="tertiary">
+					<mat-icon>home</mat-icon> Button CTA
 				</button>
-				<button
-					mat-mini-fab
-					color="accent"
-					aria-label="Example icon button with a plus one icon">
-					<mat-icon>plus_one</mat-icon>
+				<button mat-button class="tertiary !tw-rounded-full">
+					Button CTA <mat-icon iconPositionEnd>home</mat-icon>
 				</button>
-				<button
-					mat-mini-fab
-					color="warn"
-					aria-label="Example icon button with a filter list icon">
-					<mat-icon>filter_list</mat-icon>
-				</button>
-				<button
-					mat-mini-fab
-					disabled
-					aria-label="Example icon button with a home icon">
-					<mat-icon>home</mat-icon>
-				</button>
+				<button mat-button class="tertiary" disabled>Button CTA</button>
 			</div>
-		</section> -->
+		</section>
+		<mat-divider></mat-divider>
+		<section class="tw-my-3">
+			<div class="tw-text-center tw-mb-3">Link</div>
+
+			<div
+				class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-gap-2">
+				<button mat-button class="link">Button CTA</button>
+				<button mat-button class="link">
+					<mat-icon>home</mat-icon> Button CTA
+				</button>
+				<button mat-button class="link">
+					Button CTA <mat-icon iconPositionEnd>home</mat-icon>
+				</button>
+				<button mat-button class="link" disabled>Button CTA</button>
+			</div>
+		</section>
+
+		<mat-divider class="!tw-my-5"></mat-divider>
+
+		<!-- Checkbox -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Checkbox ---
+		</h1>
+
+		<section
+			class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-my-3">
+			<adl-ui-checkbox
+				[options]="{
+					label: 'Your Hobby:',
+					checkbox: {
+						data: [
+							{
+								label: 'Reading a book',
+								value: 'read_a_book',
+							},
+							{
+								label: 'Playing Football',
+								value: 'football',
+							},
+							{
+								label: 'Swimming',
+								value: 'swimming',
+								disabled: true,
+							},
+						],
+					},
+				}"></adl-ui-checkbox>
+		</section>
+
+		<!-- Radio -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Radio ---
+		</h1>
+
+		<section
+			class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-my-3">
+			<adl-ui-radio
+				[options]="{
+					label: 'Gender:',
+					checkbox: {
+						data: [
+							{
+								label: 'Men',
+								value: 'men',
+							},
+							{
+								label: 'Women',
+								value: 'women',
+							},
+						],
+					},
+				}"></adl-ui-radio>
+		</section>
+
+		<!-- Slide Toggle -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Slide Toggle ---
+		</h1>
+
+		<section class="tw-text-center tw-my-3">
+			<mat-slide-toggle class="tw-mr-3">With Icon</mat-slide-toggle>
+			<mat-slide-toggle class="without-icon">Without Icon</mat-slide-toggle>
+		</section>
+
+		<!-- Icon -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Icon ---
+		</h1>
+
+		<section class="tw-text-center tw-my-3">
+			<mat-icon class="tw-cursor-pointer">home</mat-icon>
+			<mat-icon class="tw-cursor-pointer">close</mat-icon>
+			<mat-icon class="tw-cursor-pointer">search</mat-icon>
+			<mat-icon class="tw-cursor-pointer">add_circle</mat-icon>
+			<mat-icon class="tw-cursor-pointer">refresh</mat-icon>
+		</section>
+
+		<!-- Tooltip -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Tooltip ---
+		</h1>
+
+		<section class="tw-text-center tw-my-3">
+			<adl-ui-select
+				[options]="{
+					label: 'Tooltip position',
+					appearance: 'outline',
+					selectOptions: {
+						label: 'label',
+						value: 'value',
+						isMultiple: true,
+						data: [
+							{
+								label: 'After',
+								value: 'after',
+							},
+							{
+								label: 'Before',
+								value: 'before',
+							},
+							{
+								label: 'Above',
+								value: 'above',
+							},
+							{
+								label: 'Below',
+								value: 'below',
+							},
+						],
+					},
+					field: {
+						value: tooltipPosition,
+					},
+				}"
+				(getValue)="tooltipPosition = $event"></adl-ui-select>
+
+			<mat-icon
+				class="tw-cursor-pointer"
+				#tooltip="matTooltip"
+				matTooltip="sample text"
+				[matTooltipPosition]="tooltipPosition"
+				(mouseover)="onHoverTooltipHTML()">
+				info
+			</mat-icon>
+
+			<mat-icon
+				class="tw-cursor-pointer"
+				#tooltip="matTooltip"
+				matTooltip="sample text"
+				[matTooltipPosition]="tooltipPosition"
+				(mouseover)="onHoverTooltip()">
+				info
+			</mat-icon>
+		</section>
+
+		<!-- Tag -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Tag ---
+		</h1>
+
+		<section
+			class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-my-3">
+			<mat-chip-listbox class="tag__chip radius" [selectable]="false">
+				<mat-chip-option
+					class="chip__border"
+					value="one_fish"
+					(click)="onChipChangeHandler('one_fish')">
+					One fish
+				</mat-chip-option>
+				<mat-chip-option
+					class="chip__soft"
+					value="two_fish"
+					(click)="onChipChangeHandler('two_fish')">
+					<mat-icon>person</mat-icon>
+					Two fish
+				</mat-chip-option>
+				<mat-chip-option
+					class="tw-flex !tw-items-center chip__border"
+					value="accent_fish"
+					(click)="onChipChangeHandler('accent_fish')">
+					Accent fish
+					<button matChipRemove (click)="onDeleteTag()">
+						<mat-icon>cancel</mat-icon>
+					</button>
+				</mat-chip-option>
+				<mat-chip-option
+					class="chip__bold"
+					value="warn_fish"
+					(click)="onChipChangeHandler('warn_fish')">
+					<mat-icon>person</mat-icon>
+					Warn fish
+					<button matChipRemove (click)="onDeleteTag()">
+						<mat-icon>cancel</mat-icon>
+					</button>
+				</mat-chip-option>
+			</mat-chip-listbox>
+		</section>
+
+		<section
+			class="tw-flex tw-flex-col md:tw-flex-row tw-justify-center tw-my-3">
+			<mat-chip-listbox class="tag__chip" [selectable]="false">
+				<mat-chip-option
+					class="chip__border"
+					value="one_fish"
+					(click)="onChipChangeHandler('one_fish')">
+					One fish
+				</mat-chip-option>
+				<mat-chip-option
+					class="chip__soft"
+					value="two_fish"
+					(click)="onChipChangeHandler('two_fish')">
+					<mat-icon>person</mat-icon>
+					Two fish
+				</mat-chip-option>
+				<mat-chip-option
+					class="tw-flex !tw-items-center chip__border"
+					value="accent_fish"
+					(click)="onChipChangeHandler('accent_fish')">
+					Accent fish
+					<button matChipRemove (click)="onDeleteTag()">
+						<mat-icon>cancel</mat-icon>
+					</button>
+				</mat-chip-option>
+				<mat-chip-option
+					class="chip__bold"
+					value="warn_fish"
+					(click)="onChipChangeHandler('warn_fish')">
+					<mat-icon>person</mat-icon>
+					Warn fish
+					<button matChipRemove (click)="onDeleteTag()">
+						<mat-icon>cancel</mat-icon>
+					</button>
+				</mat-chip-option>
+			</mat-chip-listbox>
+		</section>
+
+		<!-- Tabs -->
+		<h1 class="tw-text-center tw-uppercase tw-font-bold tw-mb-4">
+			--- Tabs ---
+		</h1>
+
+		<section class="tw-my-3">
+			<mat-tab-group
+				mat-stretch-tabs="false"
+				mat-align-tabs="start"
+				[disableRipple]="true">
+				<mat-tab label="First">Content 1</mat-tab>
+				<mat-tab label="Second">Content 2</mat-tab>
+				<mat-tab label="Third">Content 3</mat-tab>
+			</mat-tab-group>
+		</section>
 	</mat-card-content>
 </app-card-ui>

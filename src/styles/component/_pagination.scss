@@ -1,0 +1,61 @@
+$arrow-back-path: 'M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z';
+$arrow-forward-path: 'M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z';
+
+mat-paginator {
+	padding-top: 10px;
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+	.mat-mdc-paginator {
+		&-outer-container {
+			display: block;
+			border-top: 1px solid $color-border-disabled;
+			.mat-mdc-paginator-container {
+				justify-content: space-between;
+				align-items: normal;
+				.mat-mdc-paginator-page-size {
+					margin-right: 16px;
+					border-right: 1px solid $color-border-disabled;
+					align-items: center;
+					.mat-mdc-paginator-page-size-select {
+						margin-right: 16px;
+					}
+				}
+			}
+		}
+		&-range-actions {
+			flex: 1;
+			align-items: normal;
+			.mat-mdc-paginator-range-label {
+				margin: 0;
+				display: flex;
+				align-items: center;
+				flex: 1;
+			}
+			.pagination__list {
+				display: flex;
+				align-items: center;
+				padding-right: 16px;
+				border-left: 1px solid $color-border-disabled;
+				border-right: 1px solid $color-border-disabled;
+				.pagination__change {
+					margin-right: 6px;
+					padding: 8px 10px;
+				}
+			}
+			.mat-mdc-paginator-navigation {
+				&-previous {
+					top: 4px;
+					path {
+						d: path($arrow-back-path);
+					}
+				}
+				&-next {
+					top: 4px;
+					path {
+						d: path($arrow-forward-path);
+					}
+				}
+			}
+		}
+	}
+}

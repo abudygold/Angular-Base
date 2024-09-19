@@ -2,33 +2,45 @@
 	<h2>Comment Management</h2>
 	<span>This is the list of comments</span>
 
-	<adl-ui-button
+	<button
 		ngProjectAs="heading-right"
-		[options]="{
-			variant: 'flat',
-			name: 'Add New Comment',
-			icon: 'add_circle',
-		}"
-		(click)="navigateToCreatePage()" />
+		mat-raised-button
+		color="primary"
+		class="!tw-rounded-full"
+		(click)="navigateToCreatePage()">
+		<mat-icon>add_circle</mat-icon> Add New Comment
+	</button>
 </app-heading-ui>
 
 <app-card-ui>
 	<mat-card-content ngProjectAs="card-content">
-		<div class="tw-mb-4 tw-w-full md:tw-w-1/4">
-			<adl-ui-search
-				[options]="{
-					placeholder: 'Search',
-				}"
-				(searchValue)="onSearch($event)" />
-		</div>
-
 		@if (!isLoading) {
-			<div class="table-responsive">
-				<adl-ui-table
-					[table]="table"
-					(pagination)="onUpdatePage($event)"
-					(actionClicked)="onActionClicked($event)" />
-			</div>
+			<mat-card class="table__card">
+				<mat-card-header
+					class="tw-flex tw-justify-between tw-items-center tw-flex-wrap tw-gap-2 tw-mb-4">
+					<mat-card-title>
+						<adl-ui-search
+							[options]="{
+								placeholder: 'Search',
+							}"
+							(searchValue)="onSearch($event)" />
+					</mat-card-title>
+
+					<button
+						mat-raised-button
+						color="primary"
+						class="!tw-rounded-full"
+						(click)="filterOpened = true; filterClickHandler()">
+						<mat-icon>filter_alt</mat-icon> Filter
+					</button>
+				</mat-card-header>
+				<mat-card-content class="!tw-p-0">
+					<adl-ui-table
+						[table]="table"
+						(pagination)="onUpdatePage($event)"
+						(actionClicked)="onActionClicked($event)" />
+				</mat-card-content>
+			</mat-card>
 		} @else {
 			<div class="tw-flex tw-justify-center tw-py-10">
 				<mat-spinner></mat-spinner>
@@ -36,3 +48,12 @@
 		}
 	</mat-card-content>
 </app-card-ui>
+
+@if (filterOpened) {
+	<app-example-list-filter
+		class="tw-hidden"
+		id="list-filter"
+		[filterValue]="filterValue"
+		(closeHandler)="filterCloseHandler()"
+		(filterHandler)="filterUpdateHandler($event)"></app-example-list-filter>
+}

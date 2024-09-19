@@ -1,0 +1,22 @@
+.sidenav-app {
+	mat-sidenav {
+		margin-top: $toolbar-height;
+	}
+	mat-sidenav-content {
+		margin-top: $toolbar-height;
+	}
+	.opened-spacing {
+		margin-left: $sidenav-lg-width !important;
+	}
+	.closed-spacing {
+		margin-left: $sidenav-xs-width !important;
+	}
+	.menu-item {
+		border-left: 5px solid;
+		border-left-color: rgba(0, 0, 0, 0);
+		&-selected {
+			border-left-color: #ed1c24;
+			background: rgba(0, 0, 0, 0.05);
+		}
+	}
+}

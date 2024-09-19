@@ -38,11 +38,9 @@ export class AuthGuard
 	}
 
 	private checkAuth(): boolean {
-		if (!!localStorage.getItem('accessToken')) {
-			return true;
-		} else {
-			this.router.navigate(['/login']);
-			return false;
-		}
+		if (!!localStorage.getItem('telin.accessToken')) return true;
+
+		this.router.navigate(['/login']);
+		return false;
 	}
 }

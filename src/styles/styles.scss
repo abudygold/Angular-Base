@@ -1,14 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
-@import './customize-material.scss';
+// @import './customize-material.scss';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'ngx-toastr/toastr';
 
 @import './fonts.scss';
 
+/* Abstract */
 @import './abstracts/color';
-@import './base/font';
-@import './component/input';
-@import './component/table';
+@import './abstracts/layout';
 
+/* Base */
+@import './base/font';
+
+/* Component */
+@import './component/autocomplete';
+@import './component/button';
+@import './component/card';
+@import './component/checkbox';
+@import './component/chips';
+@import './component/datepicker';
+@import './component/dialog';
+@import './component/input';
+@import './component/radio';
+@import './component/select';
+@import './component/sidenav';
+@import './component/stepper';
+@import './component/table';
+@import './component/tabs';
+@import './component/toolbar';
+@import './component/pagination';
+@import './component/slidetoggle';
+@import './component/tooltip';
+@import './component/drawer';
+
+/* Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,4 +47,4 @@ body {
 	font-family: Inter, 'Helvetica Neue', sans-serif;
 }
 
-@import './theme/easy-theme.scss';
+// @import './theme/easy-theme.scss';

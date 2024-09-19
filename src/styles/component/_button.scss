@@ -1,0 +1,91 @@
+button {
+	&.mat-mdc-button {
+		&.tertiary {
+			color: $color-text-brand;
+			&:hover,
+			&:focus {
+				background-color: $color-background-brand-subtle-hovered;
+				box-shadow: $color-shadow-focus-ring;
+			}
+			&.mat-mdc-button-disabled {
+				color: $color-text-disabled;
+			}
+			.mat-mdc-button-persistent-ripple {
+				&::before {
+					background: transparent;
+				}
+			}
+		}
+		&.link {
+			color: $color-text-brand;
+			&.mat-mdc-button-disabled {
+				color: $color-text-disabled;
+			}
+			.mat-mdc-button-persistent-ripple {
+				&::before {
+					background: transparent;
+				}
+			}
+		}
+	}
+	&.mat-mdc-raised-button {
+		box-shadow: unset;
+		.mat-mdc-button-touch-target {
+			height: inherit;
+		}
+		&.mat-primary {
+			color: $color-text-inverse;
+			background-color: $color-background-brand-bold;
+			border: 1px solid $color-border-brand;
+			&:hover,
+			&:focus,
+			&:active {
+				box-shadow: $color-shadow-focus-ring;
+			}
+			&:active {
+				animation: pulsate-16 1s infinite;
+			}
+		}
+		&.secondary {
+			color: $color-text-brand;
+			background-color: $color-background-brand-subtle;
+			border-color: $color-background-brand-subtle;
+			&:hover,
+			&:focus,
+			&:active {
+				box-shadow: $color-shadow-focus-ring;
+			}
+		}
+		&.secondary-gray {
+			color: $color-text;
+			background-color: white;
+			border-color: $color-border;
+			&:hover,
+			&:focus,
+			&:active {
+				box-shadow: $color-shadow-focus-ring-gray;
+			}
+		}
+		&.mat-mdc-button-disabled {
+			color: $color-text-disabled;
+			background-color: $color-background-disabled;
+			border-color: $color-background-disabled;
+		}
+	}
+	&[mat-icon-button] {
+		display: flex;
+		align-items: center;
+	}
+}
+
+@keyframes pulsate-16 {
+	0% {
+		transform: scale(1.04, 1.08);
+	}
+	50% {
+		transform: scale(1.08, 1.12);
+	}
+	100% {
+		transform: scale(1.04, 1.08);
+	}
+}

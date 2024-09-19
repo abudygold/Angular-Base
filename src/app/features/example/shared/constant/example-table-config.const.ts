@@ -3,6 +3,7 @@ import { TableModel } from '@adlfe/angular-ui';
 /* Table  */
 const TableConfig = new TableModel();
 TableConfig.isPagination = true;
+TableConfig.tableClass = 'table__bordered';
 TableConfig.labels = ['ID', 'Name', 'Email', 'Body', 'Actions'];
 TableConfig.columns = [
 	{

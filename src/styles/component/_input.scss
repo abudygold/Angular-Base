@@ -1,9 +1,58 @@
 .mat-mdc-form-field {
-	.mdc-notched-outline__notch {
-		border-right: 0;
+	&.mat-focused {
+		.mdc-notched-outline {
+			&__leading,
+			&__notch,
+			&__trailing {
+				border-color: $color-border-focused !important;
+			}
+		}
+		.mat-mdc-text-field-wrapper {
+			box-shadow: $color-shadow-focus-ring;
+			border-radius: 8px;
+		}
 	}
-	.mat-mdc-form-field-hint-wrapper {
-		padding: 0;
+	&.mat-form-field-disabled {
+		.mdc-notched-outline {
+			&__leading,
+			&__notch,
+			&__trailing {
+				background-color: $color-background-disabled;
+				color: $color-text-disabled;
+			}
+		}
+	}
+	&.mat-form-field-invalid {
+		&__leading,
+		&__notch,
+		&__trailing {
+			border-color: $color-border-danger;
+		}
+		.mat-mdc-text-field-wrapper {
+			box-shadow: $color-shadow-focus-ring-danger;
+			border-radius: 8px;
+		}
+		mat-icon {
+			--mat-icon-color: #e5484d;
+		}
+	}
+	.mdc-notched-outline {
+		&__leading,
+		&__notch,
+		&__trailing {
+			border-color: $color-border-input !important;
+		}
+		&__leading {
+			border-top-left-radius: 8px !important;
+			border-bottom-left-radius: 8px !important;
+		}
+		&__trailing {
+			border-top-right-radius: 8px !important;
+			border-bottom-right-radius: 8px !important;
+		}
+		&__notch {
+			border-right: 0;
+		}
 	}
 	.mat-mdc-form-field-error-wrapper {
 		padding: 0;
@@ -12,6 +61,9 @@
 		mat-error {
 			line-height: 0;
 		}
+	}
+	.mat-mdc-form-field-hint-wrapper {
+		padding: 0;
 	}
 }
 

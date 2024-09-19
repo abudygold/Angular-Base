@@ -11,7 +11,7 @@
 	},
 	"private": true,
 	"dependencies": {
-		"@adlfe/angular-ui": "^1.0.10",
+		"@adlfe/angular-ui": "^1.0.16",
 		"@angular/animations": "^18.0.4",
 		"@angular/cdk": "^18.0.4",
 		"@angular/common": "^18.0.4",

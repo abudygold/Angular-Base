@@ -3,6 +3,7 @@ import {
 	provideHttpClient,
 	withInterceptorsFromDi,
 } from '@angular/common/http';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {
@@ -17,6 +18,7 @@ import { provideToastr } from 'ngx-toastr';
 import { AppComponent } from './app/app.component';
 import { AuthInterceptor, ErrorInterceptor } from './app/core/interceptors';
 import { ROUTES_CONST } from './app/core/routing';
+import { MyCustomPaginatorIntl } from './app/shared/utils/custom-paginator';
 
 bootstrapApplication(AppComponent, {
 	providers: [
@@ -35,7 +37,7 @@ bootstrapApplication(AppComponent, {
 			})
 		),
 		provideToastr({
-			positionClass: 'inline',
+			positionClass: 'toast-top-right',
 			preventDuplicates: true,
 			enableHtml: true,
 			tapToDismiss: true,
@@ -52,5 +54,6 @@ bootstrapApplication(AppComponent, {
 			useClass: ErrorInterceptor,
 			multi: true,
 		},
+		{ provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntl },
 	],
 }).catch((err) => console.error(err));

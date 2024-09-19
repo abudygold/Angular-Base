@@ -1,0 +1,18 @@
+.mat-mdc-select-panel {
+	margin: 5px 0;
+	border-radius: 8px !important;
+	.mat-mdc-option {
+		&:hover {
+			background-color: $color-background-input-hovered !important;
+		}
+		&-active {
+			background-color: $color-background-input-pressed !important;
+		}
+	}
+	.mat-pseudo-checkbox {
+		border-radius: 4px;
+		&-checked {
+			color: $color-background-brand-bold !important;
+		}
+	}
+}

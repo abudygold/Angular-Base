@@ -7,13 +7,14 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-import { CardUIComponent } from 'src/app/shared/components/card-ui';
-import { HeadingUIComponent } from 'src/app/shared/components/heading-ui';
 
+import { CardUIComponent } from '../../../../shared/components/card-ui';
+import { HeadingUIComponent } from '../../../../shared/components/heading-ui';
 import { SAMPLE_FORM_CONST } from '../../shared/constant';
 import { ExampleModel } from '../../shared/model';
 
@@ -24,6 +25,7 @@ import { ExampleModel } from '../../shared/model';
 		FormsModule,
 		ReactiveFormsModule,
 		MatCardModule,
+		MatButtonModule,
 		CardUIComponent,
 		HeadingUIComponent,
 	],

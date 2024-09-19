@@ -1,0 +1,7 @@
+mat-card {
+	&.table__card {
+		border: 1px solid $color-border-disabled;
+		border-radius: 16px;
+		box-shadow: none;
+	}
+}

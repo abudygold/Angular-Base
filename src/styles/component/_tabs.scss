@@ -1,0 +1,22 @@
+mat-tab-group {
+	.mat-mdc-tab-label-container {
+		border-bottom: 1px solid $color-border-disabled;
+	}
+	.mdc-tab {
+		&--active {
+			.mdc-tab__text-label {
+				color: $color-border-selected;
+				font-weight: 600;
+			}
+			.mdc-tab-indicator__content {
+				border-color: $color-border-selected;
+			}
+		}
+		.mdc-tab__text-label {
+			color: $color-border-bold;
+		}
+	}
+	.mat-mdc-tab-body {
+		padding: 24px 16px;
+	}
+}

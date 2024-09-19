@@ -1,1 +1,65 @@
-<p>example-list-filter works!</p>
+<div class="tw-flex tw-justify-between tw-items-center filter-spacing">
+	<p class="tw-text-xl tw-font-semibold !tw-mb-0">Filter</p>
+	<mat-icon class="tw-cursor-pointer" (click)="onClose()">close</mat-icon>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="filter-spacing">
+	<adl-ui-input-text
+		[options]="{
+			label: 'Full Name',
+			appearance: 'outline',
+			placeholder: 'Enter Full Name',
+			field: {
+				value: filter.fullname,
+			},
+		}"
+		(getValue)="assignData($event, 'fullname')" />
+
+	<adl-ui-select
+		[options]="{
+			label: 'Color',
+			appearance: 'outline',
+			selectOptions: {
+				label: 'label',
+				value: 'value',
+				data: [
+					{
+						label: 'Green',
+						value: 'green',
+					},
+					{
+						label: 'Red',
+						value: 'red',
+					},
+					{
+						label: 'Yellow',
+						value: 'yellow',
+					},
+					{
+						label: 'Orange',
+						value: 'orange',
+					},
+				],
+			},
+			field: {
+				value: filter.color,
+			},
+		}"
+		(getValue)="assignData($event, 'color')"></adl-ui-select>
+</div>
+
+<div class="tw-w-full tw-absolute tw-bottom-0">
+	<mat-divider></mat-divider>
+
+	<div class="tw-flex tw-justify-end tw-gap-2 filter-spacing">
+		<button mat-button class="tertiary !tw-text-[#E5484D]" (click)="onReset()">
+			Reset Filter
+		</button>
+
+		<button mat-raised-button color="primary" (click)="onFilter()">
+			Apply Filter
+		</button>
+	</div>
+</div>

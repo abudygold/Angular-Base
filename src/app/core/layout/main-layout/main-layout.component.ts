@@ -1,44 +1,37 @@
 import {
-	animate,
 	state,
 	style,
 	transition,
 	trigger,
+	useAnimation,
 } from '@angular/animations';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import {
-	Component,
-	Inject,
-	OnInit,
-	PLATFORM_ID,
-	ViewChild,
-	ViewEncapsulation,
-	signal,
-} from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { NgClass } from '@angular/common';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 
-import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+
+import { BreadcrumbUIComponent } from '../../../shared/components/breadcrumb-ui';
+import { APP_TITLE } from '../../../shared/constant';
+import {
+	ANIMATION_PARAMS,
+	SIDEBAR_CLOSE_ANIMATION,
+	SIDEBAR_OPEN_ANIMATION,
+} from '../../animation';
+import { SidenavComponent } from '../components/sidenav';
+import { ToolbarComponent } from '../components/toolbar';
 
 @Component({
 	standalone: true,
 	selector: 'app-main-layout',
 	imports: [
-		CommonModule,
+		NgClass,
 		RouterOutlet,
-		RouterModule,
-		MatButtonModule,
-		MatIconModule,
-		MatDividerModule,
-		MatToolbarModule,
 		MatSidenavModule,
-		MatListModule,
-		ToastContainerDirective,
+		BreadcrumbUIComponent,
+		ToolbarComponent,
+		SidenavComponent,
 	],
 	templateUrl: './main-layout.component.html',
 	styleUrl: './main-layout.component.scss',
@@ -47,50 +40,81 @@ import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 			state(
 				'in',
 				style({
-					transform: 'translate3d(0,0,0)',
+					width: ANIMATION_PARAMS.menuWidthLG,
+					position: 'fixed',
 				})
 			),
 			state(
 				'out',
 				style({
-					transform: 'translate3d(100%, 0, 0)',
+					width: ANIMATION_PARAMS.menuWidthXS,
+					position: 'fixed',
 				})
 			),
-			transition('in => out', animate('400ms ease-in-out')),
-			transition('out => in', animate('400ms ease-in-out')),
+			transition('in => out', [useAnimation(SIDEBAR_CLOSE_ANIMATION)]),
+			transition('out => in', [useAnimation(SIDEBAR_OPEN_ANIMATION)]),
 		]),
+		/* trigger('slideInOut', [
+			state(
+				'in',
+				style({
+					width: '280px',
+					position: 'fixed',
+				})
+			),
+			state(
+				'out',
+				style({
+					width: '65px',
+					position: 'fixed',
+				})
+			),
+			transition('in => out', animate('250ms ease-in-out')),
+			transition('out => in', animate('250ms ease-in-out')),
+		]), */
 	],
 	encapsulation: ViewEncapsulation.None,
 })
-export class MainLayoutComponent implements OnInit {
-	menuItems = signal<any[]>([
-		{
-			icon: 'dashboard',
-			label: 'Dashboard',
-			route: 'example',
-		},
-		{
-			icon: 'video_library',
-			label: 'Content',
-			route: 'example/detail/1',
-		},
-	]);
+export class MainLayoutComponent implements OnInit, OnDestroy {
+	isVisible: boolean = false;
+	appTitle: string = APP_TITLE;
+	filterOpened: boolean = false;
 
-	isBrowser!: boolean;
-	isVisible: boolean = true;
-
-	@ViewChild(ToastContainerDirective, { static: true })
-	toastContainer!: ToastContainerDirective;
+	private subscribers: Subscription[] = [];
 
 	constructor(
-		@Inject(PLATFORM_ID) private platformId: string,
-		private _toastrService: ToastrService
+		private router: Router,
+		private activatedRoute: ActivatedRoute
 	) {}
 
-	ngOnInit() {
-		this.isBrowser = isPlatformBrowser(this.platformId);
-		this._toastrService.overlayContainer = this.toastContainer;
+	ngOnInit(): void {
+		this.subscribers.push(
+			this.activatedRoute.queryParams.subscribe(
+				(resp) => (this.filterOpened = resp['opened'] ?? false)
+			)
+		);
 
-		if (!this.isBrowser) this.isVisible = false;
+		setTimeout(() => this.backdropClickHandler());
+	}
+
+	get isMobile(): boolean {
+		const regex =
+			/Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+		return regex.test(navigator.userAgent);
+	}
+
+	backdropClickHandler(): void {
+		if (document.getElementById('list-filter'))
+			document.getElementById('list-filter')!.style.display = 'none';
+
+		const params = { ...this.activatedRoute.snapshot.queryParams };
+		delete params['opened'];
+
+		this.filterOpened = false;
+		this.router.navigate([], { queryParams: params });
+	}
+
+	ngOnDestroy(): void {
+		this.subscribers.forEach((each) => each.unsubscribe());
 	}
 }

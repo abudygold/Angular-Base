@@ -1,0 +1,35 @@
+mat-chip-listbox {
+	&.tag__chip {
+		&.radius {
+			.mat-mdc-standard-chip {
+				border-radius: 8px;
+			}
+		}
+		mat-chip-option {
+			.mdc-evolution-chip__text-label {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+				color: $color-text !important;
+			}
+			&.chip__border {
+				color: $color-text;
+				background-color: transparent;
+				border: 1px solid $color-border-disabled;
+			}
+			&.chip__soft {
+				color: $color-text;
+				background-color: $color-background-disabled;
+			}
+			&.chip__bold {
+				background-color: $color-background-brand-bold;
+				.mdc-evolution-chip__text-label {
+					color: $color-text-inverse !important;
+				}
+				.mdc-evolution-chip__icon--trailing {
+					color: $color-text-inverse !important;
+				}
+			}
+		}
+	}
+}

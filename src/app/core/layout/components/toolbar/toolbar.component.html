@@ -1,0 +1,37 @@
+<mat-toolbar class="tw-flex tw-justify-between toolbar-app">
+	<div class="tw-flex tw-items-center">
+		<div
+			class="logo"
+			[ngClass]="{
+				'logo-none': !toggleConfig.isVisible || toggleConfig.isMobile,
+			}">
+			<img
+				src="https://dashboard-staging.neuapix.com/assets/icons/neuapix-red.svg"
+				alt="LOGO" />
+		</div>
+
+		<button mat-icon-button class="tw-w-9" (click)="toggleHandler.emit()">
+			<mat-icon>
+				{{ toggleConfig.isVisible ? 'chevron_left' : 'chevron_right' }}
+			</mat-icon>
+		</button>
+
+		<span class="tw-hidden md:tw-block tw-px-3">{{ appTitle }}</span>
+	</div>
+
+	<span class="tw-flex tw-items-center">
+		<mat-icon class="tw-mx-3 tw-cursor-pointer">notifications_unread</mat-icon>
+
+		<div
+			class="tw-flex tw-items-center tw-cursor-pointer"
+			(click)="openSetting = !openSetting">
+			<img
+				src="https://img.freepik.com/premium-photo/gamer-man-jentle-man-with-laptop-avator_1101464-1036.jpg"
+				alt="User Image"
+				class="tw-rounded-full h-max" />
+			<mat-icon>
+				{{ openSetting ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+			</mat-icon>
+		</div>
+	</span>
+</mat-toolbar>

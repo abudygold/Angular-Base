@@ -1,1 +1,48 @@
-<p>breadcrumb-ui works!</p>
+<app-card-ui>
+	<mat-card-content ngProjectAs="card-content">
+		<div
+			class="tw-flex tw-items-center tw-overflow-x-auto tw-whitespace-nowrap">
+			<a routerLink="/" class="tw-text-gray-600 dark:tw-text-gray-200">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="tw-w-5 tw-h-5"
+					viewBox="0 0 20 20"
+					fill="currentColor">
+					<path
+						d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+				</svg>
+			</a>
+
+			@for (
+				breadcrumb of breadcrumbs;
+				track breadcrumb.name;
+				let last = $last
+			) {
+				<span
+					class="tw-mx-4 tw-text-gray-500 dark:tw-text-gray-300 rtltw-:-scale-x-100">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 20 20"
+						fill="currentColor">
+						<path
+							fill="currentColor"
+							d="m18.366 2.974l-11 19.052l-1.732-1l11-19.052l1.732 1Z" />
+					</svg>
+				</span>
+
+				<a
+					class="hover:tw-underline"
+					[routerLink]="breadcrumb.link"
+					[ngClass]="
+						last
+							? 'tw-text-blue-600 dark:tw-text-blue-400'
+							: 'tw-text-[#80838D] dark:tw-text-gray-200'
+					">
+					{{ breadcrumb.name }}
+				</a>
+			}
+		</div>
+	</mat-card-content>
+</app-card-ui>
